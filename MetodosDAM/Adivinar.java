@@ -4,7 +4,7 @@ public class Adivinar {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        boolean flag = true
+        boolean flag = true;
         System.out.println("Introduce de que tamaño quieres el vector");
         int length = sc.nextInt();
 
