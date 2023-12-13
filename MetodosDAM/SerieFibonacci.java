@@ -1,3 +1,5 @@
+package MetodosDAM;
+
 import java.util.Scanner;
 
 public class SerieFibonacci {

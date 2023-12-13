@@ -1,18 +1,20 @@
+package MetodosDAM;
+
 public class OperacionesArrays {
     public static void main(String[] args){
         int length = (int) (Math.random() * 10) + 1;
         double[] array = new double[length];
 
-        llenarArray(array, length);
+        llenarArray(array);
         imprimirArray(array);
 
-        double media = calcularMedia(array, length);
+        double media = calcularMedia(array);
         System.out.printf("\nLa media es %.2f \n", media);
 
-        encontrarCercano(array, length, media);
+        encontrarCercano(array, media);
     }
-    public static void llenarArray(double[] array, int length){
-        for (int i = 0; i < length; i++) {
+    public static void llenarArray(double[] array){
+        for (int i = 0; i < array.length; i++) {
             array[i] = (double) Math.round(Math.random() * 1000) / 100;
         }
     }
@@ -21,19 +23,18 @@ public class OperacionesArrays {
             System.out.print(n + " ");
         }
     }
-    public static double calcularMedia(double[] array, int length) {
+    public static double calcularMedia(double[] array) {
         double media = 0;
         for (double n : array) {
             media += n;
         }
-        media /= length;
+        media /= array.length;
         return media;
     }
-    public static void encontrarCercano(double[] array, int length, double media) {
-        //El valor es 20 porque es la máxima diferencia que puede haber debido a que el n max es < 11
+    public static void encontrarCercano(double[] array, double media) {
         double cercano = array[0];
         double anterior = Math.abs(media - array[0]);
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < array.length; i++) {
             if (Math.abs(media - array[i]) < anterior) {
                 cercano = array[i];
                 anterior = Math.abs(media - array[i]);

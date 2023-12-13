@@ -1,6 +1,10 @@
+package MetodosDAM;
+
 import java.util.Scanner;
 
 public class BusquedaArrays {
+    static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
         final int WORDS = 5;
         String[] palabras = new String[WORDS];
@@ -9,7 +13,6 @@ public class BusquedaArrays {
 
         sc.close();
     }
-    static Scanner sc = new Scanner(System.in);
     public static void readWords(String[] palabras) {
         System.out.println("Introduce 5 palabras: ");
 
