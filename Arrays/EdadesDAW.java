@@ -6,10 +6,10 @@ public class EdadesDAW {
         String[][] classDAW = {{"Ricardo", "Jesús", "Victor", "Guillem", "Pablo", "Érika", "Filip"},{"Arturo", "Fernando", "Kevin", "Tavi", "Miguel", "Hugo R", "Alberto"}, {"Izan", "Jordi", "Hugo B", "Alex", "Vicent"}};
         int[][] agesDAW= {{20, 20, 19, 19, 28, 17, 19},{31, 29, 24, 21, 19, 19, 19},{18, 20, 18, 23, 18}};
 
-        younger(classDAW, agesDAW);
-        older(classDAW, agesDAW);
+        showYounger(classDAW, agesDAW);
+        showOlder(classDAW, agesDAW);
     }
-    public static void younger(String [][] classDAW, int[][] agesDAW) {
+    public static void showYounger(String [][] classDAW, int[][] agesDAW) {
         int lowAge= 40;
         int[] savePosition = new int [2];
         for (int i = 0; i < agesDAW.length; i++) {
@@ -25,7 +25,7 @@ public class EdadesDAW {
         int silla = savePosition[1] + 1;
         System.out.printf("La persona menor, se situa en la fila %d silla %d su nombre es %s y tiene %d años\n\n", fila, silla, classDAW[savePosition[0]][savePosition[1]], lowAge);
     }
-    public static void older(String [][] classDAW, int[][] agesDAW) {
+    public static void showOlder(String [][] classDAW, int[][] agesDAW) {
         int highAge= 0;
         int[] savePosition = new int [2];
         for (int i = 0; i < agesDAW.length; i++) {
