@@ -33,8 +33,8 @@ public class Agenda {
            salir = salir();
            if (salir) {
                for (int j = 0; j < i; j++) {
-                   System.out.println("Nombre y apellidos:\t" + datos[j] + " " + datos[j + 1] +  " " + datos[j + 2]);
-                   j += 3;
+                   System.out.println("Nombre y apellidos:\t" + datos[j]);
+                   j++;
                    System.out.println("Correo electrónico:\t" + datos[j]);
                    j++;
                    System.out.println("Dirección IP:\t" + datos[j]);
