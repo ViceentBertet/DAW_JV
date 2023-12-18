@@ -26,7 +26,7 @@ public class Adivinar {
     public static int numMatch(int nFinal){
         boolean flag = true;
         while (flag) {
-            if (nFinal - 10 >= 0) {
+            if (nFinal - 10 > 0) {
                 System.out.println("ERROR: Solo puede tener un digito. Vuelve a introducir: ");
                 nFinal = sc.nextInt();
             } else {

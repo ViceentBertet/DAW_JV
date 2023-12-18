@@ -12,7 +12,7 @@ public class AreaVolumen {
         double solucion;
 
         System.out.println("IMPORTANTE: Los datos tienen que estar en las unidades del SI");
-        System.out.println("¿Quiere calcular la area(1) de una superficie o el volumen(2) de un objeto?");
+        System.out.println("¿Quiere calcular el area(1) de una superficie o el volumen(2) de un objeto?");
         int calcular = sc.nextInt();
 
         if (calcular == UNO) {
