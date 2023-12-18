@@ -1,6 +1,7 @@
 package ArrayList_VarArgs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ListaStrings {
@@ -74,12 +75,12 @@ public class ListaStrings {
                     break;
                 case 6:
                     System.out.println("Ha seleccionado limpiar la lista");
-
+                    cleanList();
                     System.out.print("\nIntroduce lo que quieres hacer ahora: ");
                     break;
                 case 7:
                     System.out.println("Ha seleccionado ordernar la lista");
-
+                    sortList();
                     System.out.print("\nIntroduce lo que quieres hacer ahora: ");
                     break;
                 case 8:
@@ -110,22 +111,22 @@ public class ListaStrings {
         if (n == 1) {
             System.out.println("Has seleccionado buscar por el valor introducido");
             System.out.print("Introduce el valor a buscar: ");
-            String buscar = sc.next().toLowerCase();
+            String find = sc.next().toLowerCase();
 
-            if (!list.contains(buscar)) {
+            if (!list.contains(find)) {
                 System.out.println("Valor no encontrado");
             } else {
-                System.out.println("La palabra" + buscar + " esta en la posición " + list.indexOf(buscar));
+                System.out.println("La palabra" + find + " esta en la posición " + list.indexOf(find));
             }
         }else if (n == 2) {
             System.out.println("Has seleccionado buscar con el indice de la lista");
-            System.out.print("Introduce el valor a buscar: ");
-            int buscar = sc.nextInt();
+            System.out.print("Introduce el indice a buscar: ");
+            int find = sc.nextInt();
 
-            if (buscar >= list.size()) {
+            if (find >= list.size()) {
                 System.out.println("El indice esta fuera de la lista");
             } else {
-                System.out.println("La palabra" + list.get(buscar) + " esta en la posición " + buscar);
+                System.out.println("La palabra" + list.get(find) + " esta en la posición " + find);
             }
         } else {
             System.out.print("ERROR: Valor no comprendido. Vuelve a introducir:");
@@ -140,22 +141,24 @@ public class ListaStrings {
         if (n == 1) {
             System.out.println("Has seleccionado eliminar por el valor introducido");
             System.out.print("Introduce el valor a eliminar: ");
-            String buscar = sc.next().toLowerCase();
+            String delete = sc.next().toLowerCase();
 
-            if (!list.contains(buscar)) {
+            if (!list.contains(delete)) {
                 System.out.println("Valor no encontrado");
             } else {
-                list.remove(buscar);
+                list.remove(delete);
+                System.out.println("Se ha eliminado correctamente");
             }
         }else if (n == 2) {
             System.out.println("Has seleccionado eliminar con el indice de la lista");
-            System.out.print("Introduce el valor a eliminar: ");
-            int buscar = sc.nextInt();
+            System.out.print("Introduce el indice a eliminar: ");
+            int delete = sc.nextInt();
 
-            if (buscar >= list.size()) {
+            if (delete >= list.size()) {
                 System.out.println("El indice esta fuera de la lista");
             } else {
-                list.remove(buscar);
+                list.remove(delete);
+                System.out.println("Se ha eliminado correctamente");
             }
         } else {
             System.out.print("ERROR: Valor no comprendido. Vuelve a introducir:");
@@ -163,32 +166,46 @@ public class ListaStrings {
     }
     public static void modifyInList() {
         System.out.println("Introduce como quieres eliminar el elemento.");
-        System.out.println("\tIntroduzca 1 para eliminar por el valor introducido");
-        System.out.println("\tIntroduzca 2 para eliminar con el indice de la lista");
+        System.out.println("\tIntroduzca 1 para modificar por el valor introducido");
+        System.out.println("\tIntroduzca 2 para modificar con el indice de la lista");
         int n = sc.nextInt();
 
         if (n == 1) {
-            System.out.println("Has seleccionado eliminar por el valor introducido");
-            System.out.print("Introduce el valor a eliminar: ");
-            String buscar = sc.next().toLowerCase();
+            System.out.println("Has seleccionado modificar por el valor introducido");
+            System.out.print("Introduce el valor a modificar: ");
+            String modify = sc.next().toLowerCase();
+            System.out.println("Introduce el valor que quieres que permanezca");
+            String newModify = sc.next().toLowerCase();
 
-            if (!list.contains(buscar)) {
+            if (!list.contains(modify)) {
                 System.out.println("Valor no encontrado");
             } else {
-                list.remove(buscar);
+                list.set(list.indexOf(modify), newModify);
+                System.out.println("Se ha modificado correctamente");
             }
         }else if (n == 2) {
-            System.out.println("Has seleccionado eliminar con el indice de la lista");
-            System.out.print("Introduce el valor a eliminar: ");
-            int buscar = sc.nextInt();
+            System.out.println("Has seleccionado modificar con el indice de la lista");
+            System.out.print("Introduce el indice a modificar: ");
+            int modify = sc.nextInt();
+            System.out.println("Introduce el valor que quieres que permanezca");
+            String newModify = sc.next().toLowerCase();
 
-            if (buscar >= list.size()) {
+            if (modify >= list.size()) {
                 System.out.println("El indice esta fuera de la lista");
             } else {
-                list.remove(buscar);
+                list.set(modify, newModify);
+                System.out.println("Se ha modificado correctamente");
             }
         } else {
             System.out.print("ERROR: Valor no comprendido. Vuelve a introducir:");
         }
+
+    }
+    public static void cleanList(){
+        list.clear();
+    }
+    public static void sortList() {
+        Collections.sort(list);
+        showList();
     }
 }
