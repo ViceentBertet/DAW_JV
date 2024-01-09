@@ -1,7 +1,7 @@
 package objetos_clases.banco;
 
 public class CuentaBancaria {
-    private int cuenta;
+    private final int cuenta;
     private double saldo;
     public CuentaBancaria(int cuenta, double saldo){
         this.cuenta = cuenta;
