@@ -25,12 +25,13 @@ public class GestionRPG {
 
         do {
             opcion = sc.nextInt();
+            opcion -= 1;
             repetir = false;
-            if (opcion == 1 || opcion == 2) {
+            if (opcion == 0 || opcion == 1) {
                 showPersonaje(opcion);
             } else {
                 repetir = true;
-                System.out.println("ERROR");
+                System.out.print("ERROR: Ese numero no coincide con ningun personaje. Vuelvelo a intentar: ");
 
             }
         } while (repetir);
