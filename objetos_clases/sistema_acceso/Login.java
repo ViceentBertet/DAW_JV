@@ -5,11 +5,12 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Login {
-    private static final Usuario[] USERS = new Usuario[2];
+    private static final Usuario[] USERS = new Usuario[3];
     private static final Scanner SC = new Scanner(System.in);
     public static void main(String[] args) {
-        USERS[0] = new Usuario("Sergi04", "1234");
+        USERS[0] = new Usuario("AxV", "200623");
         USERS[1] = new Usuario("Roberto05", "1234");
+        USERS[2] = new Usuario("Raquel", "060604");
 
         boolean exit;
         boolean repeat;
@@ -59,7 +60,7 @@ public class Login {
     public static int inicioSesion(Usuario datos) {
         int encontrado = -1;
         for (int i = 0; i < USERS.length; i++) {
-            if (datos.getNom().equalsIgnoreCase(USERS[i].getNom()) && datos.getPasswd().equalsIgnoreCase(USERS[i].getPasswd())) {
+            if (datos.getNom().equals(USERS[i].getNom()) && datos.getPasswd().equals(USERS[i].getPasswd())) {
                encontrado = i;
                break;
             }
