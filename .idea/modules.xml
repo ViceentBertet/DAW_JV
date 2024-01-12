@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DAW_JV.iml" filepath="$PROJECT_DIR$/.idea/DAW_JV.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sistema_acceso/SistemaAcceso.iml" filepath="$PROJECT_DIR$/sistema_acceso/SistemaAcceso.iml" />
+      <module fileurl="file://$PROJECT_DIR$/objetos_clases/sistema_acceso/SistemaAcceso.iml" filepath="$PROJECT_DIR$/objetos_clases/sistema_acceso/SistemaAcceso.iml" />
     </modules>
   </component>
 </project>
