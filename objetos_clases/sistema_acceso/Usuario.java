@@ -1,9 +1,12 @@
 package objetos_clases.sistema_acceso;
 
+import java.time.LocalTime;
+
 public class Usuario {
     private String nom;
     private String passwd;
     private int nInicios = 0;
+    private LocalTime ultimoInicio;
 
     public String getNom() {
         return nom;
@@ -20,5 +23,11 @@ public class Usuario {
     }
     public int nInicioSesion(){
         return nInicios++;
+    }
+    public void setUltimoInicio(LocalTime fecha){
+        ultimoInicio = fecha;
+    }
+    public LocalTime getUltimoInicio(){
+        return ultimoInicio;
     }
 }
