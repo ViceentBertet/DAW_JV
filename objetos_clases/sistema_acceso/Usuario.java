@@ -18,11 +18,20 @@ public class Usuario {
         nom = Usuario;
         passwd = contra;
     }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public int nInicioSesion(){
-        return nInicios++;
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public int getnInicios() {
+        return nInicios;
+    }
+
+    public void nInicioSesion(){
+        nInicios++;
     }
     public void setUltimoInicio(LocalTime fecha){
         ultimoInicio = fecha;
