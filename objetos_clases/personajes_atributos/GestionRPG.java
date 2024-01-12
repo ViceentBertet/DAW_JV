@@ -3,28 +3,28 @@ package objetos_clases.personajes_atributos;
 import java.util.Scanner;
 
 public class GestionRPG {
-    private static final Personaje[] p = new Personaje[2];
-    private static final Estadistica[] e = new Estadistica[2];
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Personaje[] P = new Personaje[2];
+    private static final Estadistica[] E = new Estadistica[2];
+    private static final Scanner SC = new Scanner(System.in);
 
     public static void main(String[] args) {
-        p[0] = new Personaje("Finn el humano","Espada Dorada", "Espada corta","Escudo Plateado", "Ropa de Finn", "Gorro de Finn","Mochila de Finn");
-        p[1] = new Personaje("Rey hielo", "Explosión de hielo","Cuchillas de hielo","Barricada de hielo","Ropa del Rey Hielo","Corona del Rey hielo","Osito de Marceline");
-        e[0] = new Estadistica(55, 15, 23, 0, 35, 15, 75, 45, 5, 25);
-        e[1] = new Estadistica(95, 35, 10, 45, 15, 75, 85, 32, 10, 20);
+        P[0] = new Personaje("Finn el humano","Espada Dorada", "Espada corta","Escudo Plateado", "Ropa de Finn", "Gorro de Finn","Mochila de Finn");
+        P[1] = new Personaje("Rey hielo", "Explosión de hielo","Cuchillas de hielo","Barricada de hielo","Ropa del Rey Hielo","Corona del Rey hielo","Osito de Marceline");
+        E[0] = new Estadistica(55, 15, 23, 0, 35, 15, 75, 45, 5, 25);
+        E[1] = new Estadistica(95, 35, 10, 45, 15, 75, 85, 32, 10, 20);
 
         int opcion;
         String seeStats;
         boolean repetir;
 
-        for (int i = 0; i < p.length; i++) {
+        for (int i = 0; i < P.length; i++) {
             int n = i + 1;
-            System.out.println(n + ": " + p[i].getNombre());
+            System.out.println(n + ": " + P[i].getNombre());
         }
         System.out.print("Cual de los anteriores personajes deseas consultar (1/2): ");
 
         do {
-            opcion = sc.nextInt();
+            opcion = SC.nextInt();
             opcion -= 1;
             repetir = false;
             if (opcion == 0 || opcion == 1) {
@@ -36,9 +36,9 @@ public class GestionRPG {
             }
         } while (repetir);
 
-        System.out.print("¿Desea ver  las estadisticas de " + p[opcion].getNombre() + " (s/n)? ");
+        System.out.print("¿Desea ver  las estadisticas de " + P[opcion].getNombre() + " (s/n)? ");
 
-        seeStats = sc.next();
+        seeStats = SC.next();
         if ("s".equalsIgnoreCase(seeStats)) {
             showEstadistica(opcion);
         } else if ("n".equalsIgnoreCase(seeStats)){
@@ -47,29 +47,29 @@ public class GestionRPG {
             System.out.println("ERROR: La elección debe de ser (s/n). Cerrando el programa...");
         }
 
-        sc.close();
+        SC.close();
     }
 
     public static void showPersonaje(int opcion) {
-        System.out.println("\nAtributos de " + p[opcion].getNombre() + ":");
-        System.out.println("\tPrimera arma: " + p[opcion].getArma1());
-        System.out.println("\tSegunda arma: " + p[opcion].getArma2());
-        System.out.println("\tEscudo: " + p[opcion].getEscudo());
-        System.out.println("\tTorso: " + p[opcion].getTorso());
-        System.out.println("\tPrimer accesorio: " + p[opcion].getAccesorio1());
-        System.out.println("\tSegundo accesorio: " + p[opcion].getAccesorio2() + "\n");
+        System.out.println("\nAtributos de " +P[opcion].getNombre() + ":");
+        System.out.println("\tPrimera arma: " + P[opcion].getArma1());
+        System.out.println("\tSegunda arma: " + P[opcion].getArma2());
+        System.out.println("\tEscudo: " + P[opcion].getEscudo());
+        System.out.println("\tTorso: " + P[opcion].getTorso());
+        System.out.println("\tPrimer accesorio: " + P[opcion].getAccesorio1());
+        System.out.println("\tSegundo accesorio: " + P[opcion].getAccesorio2() + "\n");
     }
     public static void showEstadistica(int opcion) {
-        System.out.println("\nEstadisticas de " + p[opcion].getNombre() + ":");
-        System.out.println("\tPuntos de vida: " + e[opcion].getPv());
-        System.out.println("\tPuntos de hablidad: " + e[opcion].getPh());
-        System.out.println("\tAtaque físico: " + e[opcion].getAtqFis());
-        System.out.println("\tAtaque elemental: " + e[opcion].getAtqElem());
-        System.out.println("\tDefensa física:  " + e[opcion].getDefFis());
-        System.out.println("\tDefensa elemental " + e[opcion].getDefElem());
-        System.out.println("\tPrecisión: " + e[opcion].getPrec());
-        System.out.println("\tVelocidad: " + e[opcion].getVel());
-        System.out.println("\tProbabilidad de critico: " + e[opcion].getCritic());
-        System.out.println("\tProbabilidad de evasión: " + e[opcion].getEvasion());
+        System.out.println("\nEstadisticas de " + P[opcion].getNombre() + ":");
+        System.out.println("\tPuntos de vida: " + E[opcion].getPv());
+        System.out.println("\tPuntos de hablidad: " + E[opcion].getPh());
+        System.out.println("\tAtaque físico: " + E[opcion].getAtqFis());
+        System.out.println("\tAtaque elemental: " + E[opcion].getAtqElem());
+        System.out.println("\tDefensa física:  " + E[opcion].getDefFis());
+        System.out.println("\tDefensa elemental " + E[opcion].getDefElem());
+        System.out.println("\tPrecisión: " + E[opcion].getPrec());
+        System.out.println("\tVelocidad: " + E[opcion].getVel());
+        System.out.println("\tProbabilidad de critico: " + E[opcion].getCritic());
+        System.out.println("\tProbabilidad de evasión: " + E[opcion].getEvasion());
     }
 }

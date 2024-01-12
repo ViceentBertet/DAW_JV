@@ -3,14 +3,14 @@ package objetos_clases.trabajadores;
 import java.util.Scanner;
 
 public class GestionTrabajadores {
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner SC = new Scanner(System.in);
     public static void main(String[] args) {
         int nWorkers;
         boolean repetir;
 
         System.out.print("¿Cuantos trabajadores desearía introducir? ");
         do {
-            nWorkers = sc.nextInt();
+            nWorkers = SC.nextInt();
 
             if(nWorkers <= 0) {
                 System.out.print("ERROR: El numero de trabajadores debe de ser mayor que 0. Vuelve a introducir: ");
@@ -25,7 +25,7 @@ public class GestionTrabajadores {
         System.out.print("¿Desea mostrar los trabajadores que acaba de crear? (s/n)");
         do {
             repetir = false;
-            String opcion = sc.next();
+            String opcion = SC.next();
             if ("s".equalsIgnoreCase(opcion)) {
                 showWorkers(worker, project);
             } else if ("n".equalsIgnoreCase(opcion)) {
@@ -36,7 +36,7 @@ public class GestionTrabajadores {
             }
         } while (repetir);
 
-        sc.close();
+        SC.close();
     }
     public static void createWorkers(Trabajador[] worker, Proyecto[] project) {
         String nombre;
@@ -48,16 +48,16 @@ public class GestionTrabajadores {
             int n = i + 1;
             System.out.println("Datos del trabajador " + n + ":");
             System.out.print("Introduce el nombre del trabajador: ");
-            nombre = sc.next();
+            nombre = SC.next();
             System.out.print("Introduce la edad del trabajador:");
-            edad = sc.next();
+            edad = SC.next();
             System.out.print("Introduce el sueldo del trabajador: ");
-            sueldo = sc.next();
+            sueldo = SC.next();
             System.out.println("Datos proyecto del trabajador " + n + ":");
             System.out.print("Introduce el nombre del proyecto: ");
-            nombreProyecto = sc.next();
+            nombreProyecto = SC.next();
             System.out.print("Introduce la descripción del proyecto: ");
-            desc = sc.next();
+            desc = SC.next();
 
             if (nombre.isEmpty()) {
                 nombre = "vacío";

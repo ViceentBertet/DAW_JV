@@ -4,15 +4,15 @@ package objetos_clases.libreria;
 import java.util.Scanner;
 
 public class GestionLibros {
-    private static final Libro[] libro = new Libro[6];
+    private static final Libro[] LIBRO = new Libro[6];
     private static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        libro[0] = new Libro(1000, "Peter Pan", "James Matthew", 504);
-        libro[1] = new Libro(2000, "Moby Dick", "Herman Melville", 823);
-        libro[2] = new Libro(3000, "Hamlet", "William Shakespeare", 320);
-        libro[3] = new Libro(4000, "Yo, robot", "Isaac Asimov", 328);
-        libro[4] = new Libro(5000, "Ulises", "James Joyce", 854);
-        libro[5] = new Libro(6000, "El Principito", "Antoine de Saint-Exupéry", 92);
+        LIBRO[0] = new Libro(1000, "Peter Pan", "James Matthew", 504);
+        LIBRO[1] = new Libro(2000, "Moby Dick", "Herman Melville", 823);
+        LIBRO[2] = new Libro(3000, "Hamlet", "William Shakespeare", 320);
+        LIBRO[3] = new Libro(4000, "Yo, robot", "Isaac Asimov", 328);
+        LIBRO[4] = new Libro(5000, "Ulises", "James Joyce", 854);
+        LIBRO[5] = new Libro(6000, "El Principito", "Antoine de Saint-Exupéry", 92);
 
         boolean repetir;
         int nLibro = -1;
@@ -46,8 +46,8 @@ public class GestionLibros {
     }
     public static int findISBN(int isbn) {
         int position = -1;
-        for(int i = 0; i < libro.length; i++) {
-            if (libro[i].getIsbn() == isbn) {
+        for(int i = 0; i < LIBRO.length; i++) {
+            if (LIBRO[i].getIsbn() == isbn) {
                 position = i;
             }
         }
@@ -55,17 +55,17 @@ public class GestionLibros {
     }
     public static int findTitle(String title) {
         int position = -1;
-        for(int i = 0; i < libro.length; i++) {
-            if (libro[i].getTitulo().equalsIgnoreCase(title)) {
+        for(int i = 0; i < LIBRO.length; i++) {
+        if (LIBRO[i].getTitulo().equalsIgnoreCase(title)) {
                 position = i;
             }
         }
         return position;
     }
     public static void showInformation(int pos) {
-        System.out.println("\n\tISBN: " + libro[pos].getIsbn());
-        System.out.println("\tTítulo: " + libro[pos].getTitulo());
-        System.out.println("\tAutor: " + libro[pos].getAutor());
-        System.out.println("\tNumero de paginas: " + libro[pos].getnPag());
+        System.out.println("\n\tISBN: " + LIBRO[pos].getIsbn());
+        System.out.println("\tTítulo: " + LIBRO[pos].getTitulo());
+        System.out.println("\tAutor: " + LIBRO[pos].getAutor());
+        System.out.println("\tNumero de paginas: " + LIBRO[pos].getnPag());
     }
 }
