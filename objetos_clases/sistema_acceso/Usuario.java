@@ -3,6 +3,7 @@ package objetos_clases.sistema_acceso;
 public class Usuario {
     private String nom;
     private String passwd;
+    private int nInicios = 0;
 
     public String getNom() {
         return nom;
@@ -16,5 +17,8 @@ public class Usuario {
     }
     public void setNom(String nom) {
         this.nom = nom;
+    }
+    public int nInicioSesion(){
+        return nInicios++;
     }
 }
