@@ -1,9 +1,6 @@
 package objetos_clases.fernando_vicent;
 
-import java.util.Locale;
-
 public class Casa {
-
     private String calle;
     private int nombre;
     private String poblacion;
@@ -24,7 +21,12 @@ public class Casa {
     }
     public Casa(String calle, int nombre, String poblacion, double superficie, boolean garaje, int antiguedad) {
         this(calle, nombre, poblacion);
-        this.superficie = superficie;
+        if (superficie > SUPERFICIE_MINIMA) {
+            this.superficie = superficie;
+        } else {
+            System.out.println("Se ha establecido la superficie minima de 43,5 m cuadrados");
+            this.superficie = SUPERFICIE_MINIMA;
+        }
         this.garaje = garaje;
         this.antiguedad = antiguedad;
     }
@@ -53,7 +55,7 @@ public class Casa {
         if (superficie > SUPERFICIE_MINIMA) {
             this.superficie = superficie;
         } else {
-            System.out.println("Se ha establecido la superfie minima de 43,5 m cuadrados");
+            System.out.println("Se ha establecido la superficie minima de 43,5 m cuadrados");
             this.superficie = SUPERFICIE_MINIMA;
         }
     }
@@ -69,20 +71,24 @@ public class Casa {
     public void setAntiguedad(int antiguedad) {
         this.antiguedad = antiguedad;
     }
-    public void getAdressaCompleta() {
+    public String getAdressaCompleta() {
+        String datos;
         if (Qutil.esVocal(this.poblacion)) {
-            System.out.printf("\nC/ %s nº %d d'%s", this.calle, this.nombre, this.poblacion);
+            datos = "\nC/ " + this.calle + " nº " + this.nombre + " d'" + this.poblacion;
         } else {
-            System.out.printf("\nC/ %s nº %d de %s", this.calle, this.nombre, this.poblacion);
+            datos = "\nC/ " + this.calle + " nº " + this.nombre + " de " + this.poblacion;
         }
+        return datos;
     }
-    public void getInfo() {
-        this.getAdressaCompleta();
+    public String getInfo() {
+        String datos1 = this.getAdressaCompleta();
+        String datos2;
         if (this.garaje) {
-            System.out.printf(", si tiene garaje, tiene %.2f metros cuadrados y con una antiguedad de %d años.", this.superficie, this.antiguedad);
+            datos2 = datos1 + ", si tiene garaje, tiene "  + this.superficie + " metros cuadrados y con una antiguedad de" + this.antiguedad + " años.";
         } else {
-            System.out.printf(", no tiene garaje, tiene %.2f metros cuadrados y con una antiguedad de %d años.", this.superficie, this.antiguedad);
+            datos2 = datos1 + ", no tiene garaje, tiene "  + this.superficie + " metros cuadrados y con una antiguedad de" + this.antiguedad + " años.";
         }
+        return datos2;
     }
     public String toString(){
         String datos;

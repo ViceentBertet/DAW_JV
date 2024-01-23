@@ -25,11 +25,9 @@ public class Usuario {
     public void setPasswd(String passwd) {
         this.passwd = passwd;
     }
-
     public int getnInicios() {
         return nInicios;
     }
-
     public void nInicioSesion(){
         nInicios++;
     }

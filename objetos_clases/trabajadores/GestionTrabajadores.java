@@ -11,7 +11,7 @@ public class GestionTrabajadores {
         System.out.print("¿Cuantos trabajadores desearía introducir? ");
         do {
             nWorkers = SC.nextInt();
-
+            SC.nextLine();
             if(nWorkers <= 0) {
                 System.out.print("ERROR: El numero de trabajadores debe de ser mayor que 0. Vuelve a introducir: ");
             }
@@ -39,40 +39,43 @@ public class GestionTrabajadores {
         SC.close();
     }
     public static void createWorkers(Trabajador[] worker, Proyecto[] project) {
+        final String VACIO = "vacío";
+
         String nombre;
         String edad;
         String sueldo;
         String nombreProyecto;
         String desc;
+
         for (int i = 0; i < worker.length; i++) {
             int n = i + 1;
             System.out.println("Datos del trabajador " + n + ":");
             System.out.print("Introduce el nombre del trabajador: ");
-            nombre = SC.next();
+            nombre = SC.nextLine();
             System.out.print("Introduce la edad del trabajador:");
-            edad = SC.next();
+            edad = SC.nextLine();
             System.out.print("Introduce el sueldo del trabajador: ");
-            sueldo = SC.next();
+            sueldo = SC.nextLine();
             System.out.println("Datos proyecto del trabajador " + n + ":");
             System.out.print("Introduce el nombre del proyecto: ");
-            nombreProyecto = SC.next();
+            nombreProyecto = SC.nextLine();
             System.out.print("Introduce la descripción del proyecto: ");
-            desc = SC.next();
+            desc = SC.nextLine();
 
             if (nombre.isEmpty()) {
-                nombre = "vacío";
+                nombre = VACIO;
             }
             if (edad.isEmpty()) {
-                edad = "vacío";
+                edad = VACIO;
             }
             if (sueldo.isEmpty()) {
-                sueldo = "vacío";
+                sueldo = VACIO;
             }
             if (nombreProyecto.isEmpty()) {
-                nombreProyecto = "vacío";
+                nombreProyecto = VACIO;
             }
             if (desc.isEmpty()) {
-                desc = "vacío";
+                desc = VACIO;
             }
 
             worker[i] = new Trabajador(nombre, edad, sueldo);
@@ -83,12 +86,12 @@ public class GestionTrabajadores {
         for (int i = 0; i < worker.length; i++) {
             int n = i + 1;
             System.out.println("Datos del trabajador " + n + ":");
-            System.out.print("Nombre del trabajador: " + worker[i].getNombre());
-            System.out.print("Edad del trabajador:" + worker[i].getEdad());
-            System.out.print("Sueldo del trabajador: " + worker[i].getSueldo());
+            System.out.println("Nombre del trabajador: " + worker[i].getNombre());
+            System.out.println("Edad del trabajador:" + worker[i].getEdad());
+            System.out.println("Sueldo del trabajador: " + worker[i].getSueldo());
             System.out.println("Datos proyecto del trabajador " + n + ":");
-            System.out.print("Nombre del proyecto: " + project[i].getNombre());
-            System.out.print("Descripción del proyecto: " + project[i].getDesc());
+            System.out.println("Nombre del proyecto: " + project[i].getNombre());
+            System.out.println("Descripción del proyecto: " + project[i].getDesc());
         }
     }
 }

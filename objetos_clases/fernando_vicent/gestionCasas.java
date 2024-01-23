@@ -1,13 +1,11 @@
 package objetos_clases.fernando_vicent;
-import javax.sound.midi.Soundbank;
-import javax.xml.transform.Source;
 import java.util.Scanner;
 
 public class gestionCasas {
     private static final Casa[] CASAS = new Casa[10];
     private static Casa nuevaCasa;
     private static int nCasas = 0;
-    private static final Scanner SC = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         /*
         Casa maCasa = new Casa("Major", 12, "Lliria", 98, false, 30);
@@ -16,16 +14,18 @@ public class gestionCasas {
         maCasa2.setSuperficie(130);
         maCasa2.setGaraje(true);
         maCasa2.setAntiguedad(40);
-        maCasa.getInfo();
-        maCasa2.getInfo();
-        maCasa3.getInfo();
+        System.out.println(maCasa.getInfo());
+        System.out.println(maCasa2.getInfo());
+        System.out.println(maCasa3.getInfo());
         */
+        int casasRestantes;
         do {
-            System.out.println("**Gestión de casas - capacidad de 10 casas**");
+            casasRestantes = CASAS.length - nCasas;
+            System.out.println("\n**Gestión de casas - capacidad restante de " + casasRestantes +" casas**");
             introducirCasa();
             confirmarCasa();
             System.out.println("¿Desea ver las casas guardadas? (s/n)");
-            String opcion = SC.next();
+            String opcion = sc.next();
             if (opcion.equalsIgnoreCase("s")) {
                 System.out.println("Mostrando las casas\n");
             } else if (opcion.equalsIgnoreCase("n")) {
@@ -35,6 +35,8 @@ public class gestionCasas {
             }
             mostrarGuardadas();
         } while (nCasas <= 10);
+
+        sc.close();
     }
     public static void introducirCasa() {
         boolean newGaraje = false;
@@ -42,49 +44,44 @@ public class gestionCasas {
 
         System.out.println("Introducir datos. Solo meter los datos explicitos\n");
         System.out.print("Calle: ");
-        String newCalle = SC.next();
+        String newCalle = sc.next();
         System.out.print("Numero: ");
-        int newNumero = SC.nextInt();
+        int newNumero = sc.nextInt();
         System.out.print("Població: ");
-        String newPoblacio = SC.next();
+        String newPoblacio = sc.next();
         System.out.print("Superfice: ");
-        double newSuperficie = SC.nextDouble();
+        double newSuperficie = sc.nextDouble();
         do {
             error = false;
             System.out.print("Garaje (s/n): ");
-            String garaje = SC.next();
+            String garaje = sc.next();
             if (garaje.equalsIgnoreCase("s")) {
                 newGaraje = true;
-            } else if (garaje.equalsIgnoreCase("n")) {
+            } else if (!garaje.equalsIgnoreCase("n")) {
                 newGaraje = false;
             } else {
                 System.out.print("ERROR: Vuelve a introducir el ");
                 error = true;
             }
-        } while(!error);
+        } while(error);
         System.out.print("Años de antiguedad: ");
-        int newAntiguedad = SC.nextInt();
+        int newAntiguedad = sc.nextInt();
 
         nuevaCasa = new Casa(newCalle, newNumero, newPoblacio, newSuperficie, newGaraje, newAntiguedad);
 
     }
     public static void confirmarCasa() {
         boolean error;
-
         nuevaCasa.getInfo();
         System.out.print("\n");
-        System.out.print("¿Desea guardar la información mostrada? (s/n)");
         do {
             error = false;
-            String guardarInfo = SC.next();
+
+            System.out.print("¿Desea guardar la información mostrada? (s/n)");
+            String guardarInfo = sc.next();
 
             if (guardarInfo.equalsIgnoreCase("s")) {
-                CASAS[nCasas].setCalle(nuevaCasa.getCalle());
-                CASAS[nCasas].setNombre(nuevaCasa.getNombre());
-                CASAS[nCasas].setPoblacion(nuevaCasa.getPoblacion());
-                CASAS[nCasas].setSuperficie(nuevaCasa.getSuperficie());
-                CASAS[nCasas].setGaraje(nuevaCasa.getGaraje());
-                CASAS[nCasas].setAntiguedad(nuevaCasa.getAntiguedad());
+                CASAS[nCasas] = new Casa(nuevaCasa.getCalle(), nuevaCasa.getNombre(), nuevaCasa.getPoblacion(), nuevaCasa.getSuperficie(), nuevaCasa.getGaraje(),nuevaCasa.getAntiguedad());
                 System.out.println("Los datos se han guardado correctamente");
                 nCasas++;
             } else if (guardarInfo.equalsIgnoreCase("n")) {
@@ -93,11 +90,11 @@ public class gestionCasas {
                 System.out.print("ERROR:");
                 error = true;
             }
-        } while (!error);
+        } while (error);
     }
     public static void mostrarGuardadas() {
         for(int i = 0; i < nCasas; i++) {
-         CASAS[nCasas].getInfo();
+            System.out.println(CASAS[i].getInfo());
         }
     }
 }

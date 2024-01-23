@@ -66,6 +66,7 @@ public class Login {
             }
         }
         if (encontrado != -1) {
+            // Mejorar actualización de datos
             USERS[encontrado].nInicioSesion();
             if (USERS[encontrado].getnInicios() == 1) {
                 System.out.println("Se ha iniciado por primera vez en  el usuario " + USERS[encontrado].getNom());
@@ -89,6 +90,8 @@ public class Login {
             passwd = SC.next();
 
             if (passwd.equals(USERS[nCuenta].getPasswd())) {
+                //USERS[nCuenta].cambioPasswd();
+
                 do {
                     System.out.print("Introduce tu nueva contraseña: ");
                     passwd = SC.next();
@@ -108,5 +111,4 @@ public class Login {
             }
         } while (!exit);
     }
-
 }
