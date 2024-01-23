@@ -1,7 +1,7 @@
 package objetos_clases.fernando_vicent;
 import java.util.Scanner;
 
-public class gestionCasas {
+public class GestionCasas {
     private static final Casa[] CASAS = new Casa[10];
     private static Casa nuevaCasa;
     private static int nCasas = 0;
