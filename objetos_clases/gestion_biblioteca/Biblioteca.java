@@ -45,10 +45,10 @@ public class Biblioteca {
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
-    public static int validarUsuario(String user, String passwd){
+    public int validarUsuario(String user, String passwd){
         int validar = -1;
 
-        for ( Usuario usuario : getUsuarios()) {
+        for ( Usuario usuario : usuarios) {
             if (usuario.getUser().equals(user)) {
               if(usuario.getPasswd().equals(passwd)) {
                   validar = 0;
@@ -57,5 +57,22 @@ public class Biblioteca {
         }
 
         return validar;
+    }
+    public int prestarLibro(String user) {
+        int contador = 0;
+        int validarError = 0;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getUser().equals(user)) {
+                break;
+            }
+            contador++;
+        }
+        if (usuarios.get(contador).getPrestado() != null) {
+            validarError = -1;
+        }
+        return validarError;
+    }
+    public int depositarLibro(String user) {
+        return 1;
     }
 }
