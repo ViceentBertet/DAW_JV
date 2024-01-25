@@ -3,6 +3,10 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class GestionBiblioteca {
+    /*
+    Como se diferencian instancias
+    
+     */
     public static Scanner sc = new Scanner(System.in);
     public static Biblioteca biblio = new Biblioteca();
     public static final int ERROR = -1;
@@ -28,17 +32,19 @@ public class GestionBiblioteca {
                 System.out.println("Has iniciado sesión\n");
                 while (!closeSession) {
                     System.out.println("\t\tMENU");
-                    System.out.println("\t1: Pedir prestado un libro");
-                    System.out.println("\t2: Depositar libro prestado");
+                    System.out.println("\t1: Mostrar articulos");
+                    System.out.println("\t2: Pedir prestado un articulo");
+                    System.out.println("\t3: Depositar articulo prestado");
                     System.out.print("¿Que desea hacer? ");
                     int eleccion = sc.nextInt();
                     sc.nextLine();
                     
                     procesarEleccion(eleccion, user);
 
-                    System.out.println("\n1: Seguir en el programa");
-                    System.out.println("2: Cerrar sesión");
-                    System.out.printf("3: Cerrar el programa");
+
+                    System.out.println("\n2: Seguir en el programa");
+                    System.out.println("3: Cerrar sesión");
+                    System.out.printf("4: Cerrar el programa");
                     System.out.print("¿Que desea hacer? ");
                     int salir = sc.nextInt();
                     sc.nextLine();
@@ -63,8 +69,9 @@ public class GestionBiblioteca {
     }
     public static void procesarEleccion(int eleccion, String user) {
         switch (eleccion) {
-            case 1: prestarLibro(user);break;
-            case 2: int error = biblio.depositarLibro(user);
+            case 1: biblio.mostrarArticulo();
+            case 2: prestarLibro(user);break;
+            case 3: int error = biblio.depositarArticulo(user);
                     if (error == ERROR) {
                         System.out.println("ERROR: El usuario no tenia ningun libro prestado");
                     } else {
@@ -79,7 +86,7 @@ public class GestionBiblioteca {
         if (validarError == ERROR) {
             System.out.println("ERROR: El usuario ya tiene prestado un libro");
         } else {
-            biblio.mostrarLibros();
+            biblio.mostrarArticulo();
 
             System.out.println("Indica que libro te gustaria llevarte");
             String libroPrestado = sc.nextLine();
@@ -99,4 +106,5 @@ public class GestionBiblioteca {
             }
         }
     }
+
 }

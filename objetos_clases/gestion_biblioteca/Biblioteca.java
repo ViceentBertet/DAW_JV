@@ -6,29 +6,30 @@ import java.util.ArrayList;
 public class Biblioteca {
     private static final int ERROR = -1;
     private static final int OK = 0;
-    private ArrayList<Libro> libros;
+    private ArrayList<Articulo> articulos;
     private ArrayList<Usuario> usuarios;
     public Biblioteca() {
-        this.libros = crearLibros();
+        this.articulos = crearArticulos();
         this.usuarios = crearUsuarios();
     }
-    private ArrayList<Libro> crearLibros() {
-        ArrayList<Libro> libros = new ArrayList<>();
-        Libro libro1 = new Libro(1000, "Peter Pan", "James Matthew");
-        Libro libro2 = new Libro(2000, "Moby Dick", "Herman Melville");
-        Libro libro3 = new Libro(3000, "Hamlet", "William Shakespeare");
-        Libro libro4 = new Libro(4000, "Yo, robot", "Isaac Asimov");
-        Libro libro5 = new Libro(5000, "Ulises", "James Joyce");
-        Libro libro6 = new Libro(6000, "El Principito", "Antoine de Saint-Exupéry");
+    private ArrayList<Articulo> crearArticulos() {
+        ArrayList<Articulo> articulos = new ArrayList<>();
+        Articulo libro1 = new Libro(1000, "Peter Pan", "James Matthew");
+        Articulo libro2 = new Libro(2000, "Moby Dick", "Herman Melville");
+        Articulo libro3 = new Libro(3000, "Hamlet", "William Shakespeare");
+        Articulo libro4 = new Libro(4000, "Yo, robot", "Isaac Asimov");
+        Articulo libro5 = new Libro(5000, "Ulises", "James Joyce");
+        Articulo libro6 = new Libro(6000, "El Principito", "Antoine de Saint-Exupéry");
 
-        libros.add(libro1);
-        libros.add(libro2);
-        libros.add(libro3);
-        libros.add(libro4);
-        libros.add(libro5);
-        libros.add(libro6);
+        Articulo publicacion = new Publicacion(1000, "Madrid vs Barça 2-6", "Pep Guardiola");
+        articulos.add(libro1);
+        articulos.add(libro2);
+        articulos.add(libro3);
+        articulos.add(libro4);
+        articulos.add(libro5);
+        articulos.add(libro6);
 
-        return libros;
+        return articulos;
     }
     private ArrayList<Usuario> crearUsuarios() {
         ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -42,8 +43,8 @@ public class Biblioteca {
 
         return usuarios;
     }
-    public ArrayList<Libro> getLibros() {
-        return libros;
+    public ArrayList<Articulo> getArticulos() {
+        return articulos;
     }
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
@@ -78,31 +79,31 @@ public class Biblioteca {
         }
         return validarError;
     }
-    public void mostrarLibros() {
+    public void mostrarArticulo() {
         int contador = 1;
-        for (Libro libro : libros) {
+        for (Articulo articulo : articulos) {
             System.out.println("\nLIBRO " + contador);
-            System.out.println("\tISBN: " + libro.getIsbn());
-            System.out.println("\tNombre: " + libro.getTitulo());
-            System.out.println("\tAutor: " + libro.getAutor());
+            System.out.println("\tISBN: " + articulo.getIsbn());
+            System.out.println("\tNombre: " + articulo.getTitulo());
+            System.out.println("\tAutor: " + articulo.getAutor());
             contador++;
         }
     }
     public int obtenerLibro(String  buscar) {
         int contador = 0;
-        for (Libro libro : libros) {
-            if (libro.getTitulo().equals(buscar)) {
+        for (Articulo articulo : articulos) {
+            if (articulo.getTitulo().equals(buscar)) {
                 break;
             }
             contador++;
         }
 
-        if (contador >= libros.toArray().length) {
+        if (contador >= articulos.toArray().length) {
             try {
                 int buscarIsbn = Integer.parseInt(buscar);
                 contador = 0;
-                for (Libro libro : libros) {
-                    if (libro.getIsbn() == buscarIsbn) {
+                for (Articulo articulo : articulos) {
+                    if (articulo.getIsbn() == buscarIsbn) {
                         break;
                     }
                     contador++;
@@ -113,10 +114,10 @@ public class Biblioteca {
         }
         return contador;
     }
-    public int comprobarLibro(int indexLibro) {
+    public int comprobarLibro(int indexPrestado) {
         int libroPrestado = OK;
         for (Usuario usuario : usuarios) {
-            if (usuario.getPrestado() != null && usuario.getPrestado().equals(libros.get(indexLibro))) {
+            if (usuario.getPrestado() != null && usuario.getPrestado().equals(articulos.get(indexPrestado))) {
                 libroPrestado = ERROR;
                 break;
             }
@@ -131,11 +132,11 @@ public class Biblioteca {
             }
             indiceUsuario++;
         }
-        usuarios.get(indiceUsuario).setPrestado(libros.get(indiceLibro));
+        usuarios.get(indiceUsuario).setPrestado(articulos.get(indiceLibro));
     }
 
-    // Metodos para depositar libro
-    public int depositarLibro(String user) {
+    // Metodos para depositar articulo
+    public int depositarArticulo(String user) {
         int contieneLibro = 0;
         int indiceUser = 0;
         for (Usuario usuario : usuarios) {
