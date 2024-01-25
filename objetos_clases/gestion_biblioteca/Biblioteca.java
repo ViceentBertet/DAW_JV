@@ -1,8 +1,11 @@
 package objetos_clases.gestion_biblioteca;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 
 public class Biblioteca {
+    private static final int ERROR = -1;
+    private static final int OK = 0;
     private ArrayList<Libro> libros;
     private ArrayList<Usuario> usuarios;
     public Biblioteca() {
@@ -29,9 +32,9 @@ public class Biblioteca {
     }
     private ArrayList<Usuario> crearUsuarios() {
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        Usuario usu1 = new Usuario("Vicent05","1234");
-        Usuario usu2 = new Usuario("Alex00","asdf");
-        Usuario usu3 = new Usuario("Jordi03","0987");
+        Usuario usu1 = new Usuario("Vicent05","240105");
+        Usuario usu2 = new Usuario("Raquel04","060604");
+        Usuario usu3 = new Usuario("Sergi04","210704");
 
         usuarios.add(usu1);
         usuarios.add(usu2);
@@ -46,21 +49,24 @@ public class Biblioteca {
         return usuarios;
     }
     public int validarUsuario(String user, String passwd){
-        int validar = -1;
+        int validar = ERROR;
 
         for ( Usuario usuario : usuarios) {
             if (usuario.getUser().equals(user)) {
               if(usuario.getPasswd().equals(passwd)) {
-                  validar = 0;
+                  validar = OK;
+                  break;
               }
             }
         }
 
         return validar;
     }
-    public int prestarLibro(String user) {
+
+    // Metodos para prestar libro
+    public int tienePrestado(String user) {
         int contador = 0;
-        int validarError = 0;
+        int validarError = OK;
         for (Usuario usuario : usuarios) {
             if (usuario.getUser().equals(user)) {
                 break;
@@ -68,11 +74,81 @@ public class Biblioteca {
             contador++;
         }
         if (usuarios.get(contador).getPrestado() != null) {
-            validarError = -1;
+            validarError = ERROR;
         }
         return validarError;
     }
+    public void mostrarLibros() {
+        int contador = 1;
+        for (Libro libro : libros) {
+            System.out.println("\nLIBRO " + contador);
+            System.out.println("\tISBN: " + libro.getIsbn());
+            System.out.println("\tNombre: " + libro.getTitulo());
+            System.out.println("\tAutor: " + libro.getAutor());
+            contador++;
+        }
+    }
+    public int obtenerLibro(String  buscar) {
+        int contador = 0;
+        for (Libro libro : libros) {
+            if (libro.getTitulo().equals(buscar)) {
+                break;
+            }
+            contador++;
+        }
+
+        if (contador >= libros.toArray().length) {
+            try {
+                int buscarIsbn = Integer.parseInt(buscar);
+                contador = 0;
+                for (Libro libro : libros) {
+                    if (libro.getIsbn() == buscarIsbn) {
+                        break;
+                    }
+                    contador++;
+                }
+            } catch (NumberFormatException e){
+                contador = ERROR;
+            }
+        }
+        return contador;
+    }
+    public int comprobarLibro(int indexLibro) {
+        int libroPrestado = OK;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getPrestado() != null && usuario.getPrestado().equals(libros.get(indexLibro))) {
+                libroPrestado = ERROR;
+                break;
+            }
+        }
+        return libroPrestado;
+    }
+    public void prestarLibro(int indiceLibro, String user) {
+        int indiceUsuario = 0;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getUser().equals(user)) {
+                break;
+            }
+            indiceUsuario++;
+        }
+        usuarios.get(indiceUsuario).setPrestado(libros.get(indiceLibro));
+    }
+
+    // Metodos para depositar libro
     public int depositarLibro(String user) {
-        return 1;
+        int contieneLibro = 0;
+        int indiceUser = 0;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getUser().equals(user)) {
+                break;
+            }
+            indiceUser++;
+        }
+        if (usuarios.get(indiceUser).equals(null)) {
+            contieneLibro = -1;
+        } else {
+            usuarios.get(indiceUser).setPrestado(null);
+        }
+        return contieneLibro;
     }
 }
