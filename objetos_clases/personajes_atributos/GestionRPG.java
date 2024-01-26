@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GestionRPG {
     private static final Personaje[] P = new Personaje[2];
     private static final Estadistica[] E = new Estadistica[2];
-    private static final Scanner SC = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         P[0] = new Personaje("Finn el humano","Espada Dorada", "Espada corta","Escudo Plateado", "Ropa de Finn", "Gorro de Finn","Mochila de Finn");
@@ -24,7 +24,7 @@ public class GestionRPG {
         System.out.print("Cual de los anteriores personajes deseas consultar (1/2): ");
 
         do {
-            opcion = SC.nextInt();
+            opcion = sc.nextInt();
             opcion -= 1;
             repetir = false;
             if (opcion == 0 || opcion == 1) {
@@ -32,22 +32,21 @@ public class GestionRPG {
             } else {
                 repetir = true;
                 System.out.print("ERROR: Ese numero no coincide con ningun personaje. Vuelvelo a intentar: ");
-
             }
         } while (repetir);
 
         System.out.print("¿Desea ver  las estadisticas de " + P[opcion].getNombre() + " (s/n)? ");
 
-        seeStats = SC.next();
+        seeStats = sc.next();
         if ("s".equalsIgnoreCase(seeStats)) {
-            showEstadistica(opcion);
+            showEstadisticas(opcion);
         } else if ("n".equalsIgnoreCase(seeStats)){
             System.out.println("Cerrando el programa correctamente...");
         } else {
             System.out.println("ERROR: La elección debe de ser (s/n). Cerrando el programa...");
         }
 
-        SC.close();
+        sc.close();
     }
 
     public static void showPersonaje(int opcion) {
@@ -59,7 +58,7 @@ public class GestionRPG {
         System.out.println("\tPrimer accesorio: " + P[opcion].getAccesorio1());
         System.out.println("\tSegundo accesorio: " + P[opcion].getAccesorio2() + "\n");
     }
-    public static void showEstadistica(int opcion) {
+    public static void showEstadisticas(int opcion) {
         System.out.println("\nEstadisticas de " + P[opcion].getNombre() + ":");
         System.out.println("\tPuntos de vida: " + E[opcion].getPv());
         System.out.println("\tPuntos de hablidad: " + E[opcion].getPh());

@@ -1,18 +1,20 @@
 package objetos_clases.gestion_biblioteca;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Articulo {
     private int isbn;
     private String titulo;
-    private String autor;
 
+    // Crear lista de autores
+    private String autor;
+    //Crear boolean se puede prestar
     public Articulo(int isbn, String titulo, String autor) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
     }
-
     public int getIsbn() {
         return isbn;
     }

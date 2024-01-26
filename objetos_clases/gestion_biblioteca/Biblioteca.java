@@ -1,6 +1,5 @@
 package objetos_clases.gestion_biblioteca;
 
-import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 
 public class Biblioteca {
@@ -13,6 +12,7 @@ public class Biblioteca {
         this.usuarios = crearUsuarios();
     }
     private ArrayList<Articulo> crearArticulos() {
+        //Crear array de autores
         ArrayList<Articulo> articulos = new ArrayList<>();
         Articulo libro1 = new Libro(1000, "Peter Pan", "James Matthew");
         Articulo libro2 = new Libro(2000, "Moby Dick", "Herman Melville");
@@ -125,6 +125,7 @@ public class Biblioteca {
         return libroPrestado;
     }
     public void prestarLibro(int indiceLibro, String user) {
+        // Crear buscar usuario
         int indiceUsuario = 0;
         for (Usuario usuario : usuarios) {
             if (usuario.getUser().equals(user)) {

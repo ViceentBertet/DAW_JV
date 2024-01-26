@@ -1,0 +1,23 @@
+
+J
+java:S10669"/Merge this if statement with the enclosing one.(ŠùÂ£úÿÿÿÿ
+†
+java:S1319."pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(’¾ÚÈ
+‹
+java:S13191"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(»‡í¼ùÿÿÿÿ
+`
+java:S2583•"DChange this condition so that it does not always evaluate to "false"(ñÍïŸÿÿÿÿÿ
+Z
+java:S1854"?Remove this useless assignment to local variable "publicacion".(Öªžúÿÿÿÿÿ
+W
+java:S1117"<Rename "articulos" which hides the field declared at line 8.(ù»ŸÓúÿÿÿÿ
+K
+java:S1481"0Remove this unused "publicacion" local variable.(Öªžúÿÿÿÿÿ
+P
+java:S1117#";Rename "usuarios" which hides the field declared at line 9.(…Ê–
+E	java:S106U"+Replace this use of System.out by a logger.(éÖ¨¨ùÿÿÿÿ
+@	java:S106V"+Replace this use of System.out by a logger.(—…£Ú
+@	java:S106W"+Replace this use of System.out by a logger.(öÝ“Ã
+@	java:S106X"+Replace this use of System.out by a logger.(žÉ„Í
+–
+java:S2159•"zRemove this call to "equals"; comparisons against null always return false; consider using '== null' to check for nullity.(ñÍïŸÿÿÿÿÿ
