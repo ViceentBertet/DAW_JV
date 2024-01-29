@@ -45,3 +45,39 @@ G.idea/sonarlint/issuestore/f/e/fe85b8b03c19858474b914b86ff8b0fd9877c3f4,7\8\78
 Q.idea/sonarlint/securityhotspotstore/0/b/0b58b2ca3cb39fce849116c1639756a59f221354,7\0\704186cec1b284e38f89a32a01add79fb5f80c15
 w
 G.idea/sonarlint/issuestore/7/1/71f72efdcea2395de3691684969c03b8058ed452,9\0\902cbb6e71007ec6be51481e19b06c0aae2c20f0
+H
+demo_vehiculo/Coche.java,a\8\a815c6c11cee08295b74f8a81fe52f080e6571bc
+F
+demo_vehiculo/GPS.java,3\d\3de27ce38ffb7677bd9cbf8b63ec422f1db07142
+I
+demo_vehiculo/IMotor.java,e\6\e6e05399a5554c5d1eaf6348569347bcb16fe9f2
+G
+demo_vehiculo/main.java,3\5\35ab43308ff322f04c88f1d79edbd6f005cd5504
+H
+demo_vehiculo/Radio.java,6\5\65e106ce977d787dad130ab1a8827640e90d4209
+K
+demo_vehiculo/Vehiculo.java,6\5\6551c46bc096f68980ed4905fb8dc2e20428e840
+P
+ demo_vehiculo/VehiculoMotor.java,0\9\0909bd4d19a13d5191b0666614a60ba17dd4e324
+G
+demo_vehiculo/Main.java,3\f\3f91fcee6db1f811914565185bf9262bedae243d
+O
+demo_vehiculo/Intermitente.java,7\0\7091bc0237bb69293f5706d6dd4f7756ccda546c
+N
+demo_vehiculo/CajaCambios.java,6\0\602bf6d8fe783dc4fcd968cf82e20f86e981a1f5
+O
+demo_vehiculo/CambioMarcha.java,7\5\7564ffe2cdc63f0a8c6a2a251773598faf853d1a
+L
+demo_vehiculo/Bicicleta.java,1\a\1a64e60581e6998ab9b847346600dcfe89c3ac18
+P
+ demo_vehiculo/ICambioMarcha.java,7\7\778517ca34d765ae4659e5491d97d268aa3a96b4
+G
+demo_vehiculo/IGPS.java,9\b\9be8aaf153abe1fb8a3d6f17cb187d33c477cf15
+P
+ demo_vehiculo/IIntermitente.java,5\c\5cac95d573e055d1827c3ee2fc32615e78852b1f
+I
+demo_vehiculo/IRadio.java,e\f\ef8ca1daf844c112f89af8eaaf1d89147c5d6473
+M
+demo_vehiculo/Smartphone.java,1\3\130d2dff873654defe8b164345658c13c8ec881f
+Q
+!demo_vehiculo/IVehiculoMotor.java,e\b\eb04d26b6aa40e76d1dbb65d47d9ec15b27ea10d
