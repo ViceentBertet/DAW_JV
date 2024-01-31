@@ -1,0 +1,48 @@
+
+i
+java:S1104
+"NMake sc a static final constant or non-public and provide accessors if needed.(”Ä²ıÿÿÿÿ
+h
+java:S1104"RMake biblio a static final constant or non-public and provide accessors if needed.(·¦Ï
+C
+java:S1444
+"(Make this "public static sc" field final(”Ä²ıÿÿÿÿ
+B
+java:S1444",Make this "public static biblio" field final(·¦Ï
+8
+java:S2189!""Add an end condition to this loop.(±¤ìØ
+=
+java:S2189""Add an end condition to this loop.(” ÿÿÿÿÿ
+R
+java:S2589"7Remove this expression which always evaluates to "true"(” ÿÿÿÿÿ
+M
+java:S2589!"7Remove this expression which always evaluates to "true"(±¤ìØ
+E	java:S106"+Replace this use of System.out by a logger.(“¡‡…üÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(äëÃïıÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(úïó
+@	java:S106"+Replace this use of System.out by a logger.(ùşÎ¡
+@	java:S106 "+Replace this use of System.out by a logger.(ò­‹ò
+@	java:S106""+Replace this use of System.out by a logger.(˜¢°„
+@	java:S106#"+Replace this use of System.out by a logger.(ùİ×â
+E	java:S106$"+Replace this use of System.out by a logger.(¿¸ëúÿÿÿÿ
+?	java:S106%"+Replace this use of System.out by a logger.(…ïá/
+?	java:S106&"+Replace this use of System.out by a logger.(…à°M
+E	java:S106-"+Replace this use of System.out by a logger.(í¼ò©ÿÿÿÿÿ
+E	java:S106."+Replace this use of System.out by a logger.(Ì‡àúÿÿÿÿ
+@
+java:S3457/"%String contains no format specifiers.(×«Ç›ûÿÿÿÿ
+E	java:S106/"+Replace this use of System.out by a logger.(×«Ç›ûÿÿÿÿ
+?	java:S1060"+Replace this use of System.out by a logger.(…à°M
+E	java:S1065"+Replace this use of System.out by a logger.(ÎÅ§²ıÿÿÿÿ
+@	java:S1067"+Replace this use of System.out by a logger.(›²ØŸ
+E	java:S106;"+Replace this use of System.out by a logger.(¬õÇßüÿÿÿÿ
+@	java:S106?"+Replace this use of System.out by a logger.(¾‚Ö¡
+a	java:S128H"LEnd this switch case with an unconditional break, return or throw statement.(˜”ï¿
+E	java:S106L"+Replace this use of System.out by a logger.(ƒ“ùÂùÿÿÿÿ
+@	java:S106N"+Replace this use of System.out by a logger.(¡®ûä
+@	java:S106Q"+Replace this use of System.out by a logger.(¤Ã¸ƒ
+E	java:S106W"+Replace this use of System.out by a logger.(¸ò‰âúÿÿÿÿ
+@	java:S106["+Replace this use of System.out by a logger.(‰Ëˆ
+@	java:S106a"+Replace this use of System.out by a logger.(àƒ„´
+E	java:S106e"+Replace this use of System.out by a logger.(èááşÿÿÿÿ
+E	java:S106h"+Replace this use of System.out by a logger.(ÿïäÇıÿÿÿÿ
