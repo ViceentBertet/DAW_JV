@@ -1,30 +1,58 @@
 package objetos_clases.multiplication_game;
 
-public class TwoPlayers extends Juego {
+import java.sql.SQLOutput;
+import java.util.Random;
+import java.util.Scanner;
 
-    private int respuesta1;
-    private int respuesta2;
-
+public class TwoPlayers implements IMultiplication {
+    private int producto;
     public TwoPlayers() {
-        super();
     }
+    @Override
+    public void generarProducto() {
+        Random r = new Random();
+        int operando1 = r.nextInt(51);
+        int operando2 = r.nextInt(51);
+        System.out.println(operando1 + " por " + operando2);
+        this.producto = operando1 * operando2;
+    }
+    @Override
+    public boolean comprovarRespuesta(int respuesta) {
+        if (this.producto == respuesta) {
+            return Boolean.TRUE;
+        } else {
+            return Boolean.FALSE;
+        }
+    }
+    @Override
+    public void jugar(){
+        Scanner sc = new Scanner(System.in);
+        int perdedor = 0;
+        int respuesta;
+        boolean isCorrect = true;
 
-    public TwoPlayers(int respuesta1, int respuesta2) {
-        super();
-        this.respuesta1 = respuesta1;
-        this.respuesta2 = respuesta2;
-    }
+        while(isCorrect) {
+            generarProducto();
+            System.out.println("Respuesta jugador 1: ");
+            respuesta = sc.nextInt();
+            isCorrect = comprovarRespuesta(respuesta);
+            if (!isCorrect) {
+                 perdedor = 1;
+            } else {
+                System.out.println("Respuesta jugador 2: ");
+                respuesta = sc.nextInt();
+                isCorrect = comprovarRespuesta(respuesta);
+                if (!isCorrect) {
+                    perdedor = 2;
+                }
+            }
+        }
 
-    public int getRespuesta1() {
-        return respuesta1;
-    }
-    public void setRespuesta1(int respuesta1) {
-        this.respuesta1 = respuesta1;
-    }
-    public int getRespuesta2() {
-        return respuesta2;
-    }
-    public void setRespuesta2(int respuesta2) {
-        this.respuesta2 = respuesta2;
+        if (perdedor != 1) {
+            System.out.println("El jugador 1 ha ganado");
+        } else {
+            System.out.println("El jugador 2 ha ganado");
+        }
+        System.out.println("¡El jugador numero" + perdedor + " ha  fallado!");
     }
 }

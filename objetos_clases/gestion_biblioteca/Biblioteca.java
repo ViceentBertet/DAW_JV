@@ -21,13 +21,17 @@ public class Biblioteca {
         Articulo libro5 = new Libro(5000, "Ulises", "James Joyce");
         Articulo libro6 = new Libro(6000, "El Principito", "Antoine de Saint-Exupéry");
 
-        Articulo publicacion = new Publicacion(1000, "Madrid vs Barça 2-6", "Pep Guardiola");
+        Articulo publicacion1 = new Publicacion(7000, "Madrid vs Barça 2-6", "Pep Guardiola");
+        Articulo publicacion2 = new Publicacion(8000, "", "");
+        Articulo publicacion3 = new Publicacion()
+
         articulos.add(libro1);
         articulos.add(libro2);
         articulos.add(libro3);
         articulos.add(libro4);
         articulos.add(libro5);
         articulos.add(libro6);
+        articulos.add(publicacion1);
 
         return articulos;
     }
