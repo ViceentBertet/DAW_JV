@@ -1,0 +1,7 @@
+
+
+java:S1186	"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ë¬Õ¥8Å®¥¤Õ1
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤‰Ğûÿÿÿÿ8³„ÒÉÕ1
+G	java:S106"+Replace this use of System.out by a logger.(›èÅ¢8À¾ÉÊÕ1
+L	java:S106"+Replace this use of System.out by a logger.(ü³¬Çüÿÿÿÿ8€âÊÕ1

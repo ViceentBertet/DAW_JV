@@ -81,3 +81,15 @@ M
 demo_vehiculo/Smartphone.java,1\3\130d2dff873654defe8b164345658c13c8ec881f
 Q
 !demo_vehiculo/IVehiculoMotor.java,e\b\eb04d26b6aa40e76d1dbb65d47d9ec15b27ea10d
+K
+extiende_figura/Figura.java,5\0\508ec794de343090544766a85bd7d14bd1e1ff9a
+T
+$extiende_figura/FiguraAbstracta.java,4\5\45697adfb06bfbc7c25edc97bd5caf93a6a56436
+O
+extiende_figura/Rectangulo.java,9\8\985a4f234dae86b7f742e26638212c5455799c5b
+S
+#extiende_figura/TrabajaFiguras.java,3\2\320a7ccdca54aba156390382c154433f242adfb2
+N
+extiende_figura/Triangulo.java,4\6\46ed69e7ee68937a046c58f0c7d24ffafcb4e7be
+L
+extiende_figura/Circulo.java,a\8\a89e7cf2ced3b690bcc02e4167da7f9e1229d7b2
