@@ -23,7 +23,6 @@ public class Biblioteca {
 
         Articulo publicacion1 = new Publicacion(7000, "Madrid vs Barça 2-6", "Pep Guardiola");
         Articulo publicacion2 = new Publicacion(8000, "", "");
-        Articulo publicacion3 = new Publicacion()
 
         articulos.add(libro1);
         articulos.add(libro2);

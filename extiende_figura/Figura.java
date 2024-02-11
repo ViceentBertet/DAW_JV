@@ -7,7 +7,8 @@ public class Figura {
         this.nombre = nombreFigura;
     }
 
-    final public String toString() {
+    public String toString() {
         return this.nombre;
     }
+
 }

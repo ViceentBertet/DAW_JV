@@ -8,7 +8,7 @@ public class TrabajaFiguras {
         System.out.println("Area de r1 = " + r1.area());
 
         Rectangulo r2 = new Rectangulo(8.6, 33.1);
-        System.out.println("Area de r2 = " + r2.toString());
+        System.out.println("Area de r2 = " + r2.area());
 
         if (r1.mayorQue(r2))
             System.out.println("El rectángulo de mayor area es r1");

@@ -1,6 +1,6 @@
 package extiende_figura;
 
-public class Triangulo extends FiguraAbstracta{
+public class Triangulo extends Figura implements IFigura2D{
     
     //ATRIBUTOS
     private final double base;

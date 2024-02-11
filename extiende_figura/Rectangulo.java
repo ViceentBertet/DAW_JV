@@ -1,6 +1,6 @@
 package extiende_figura;
 
-public class Rectangulo extends FiguraAbstracta {
+public class Rectangulo extends Figura implements IFigura2D {
 
 
     //ATRIBUTOS
