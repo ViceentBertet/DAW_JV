@@ -1,6 +1,6 @@
 package extiende_figura;
 
-public class Rectangulo extends Figura implements IFigura2D {
+public class Rectangulo extends Figura implements IFigura2D, Printable{
 
 
     //ATRIBUTOS
@@ -10,18 +10,11 @@ public class Rectangulo extends Figura implements IFigura2D {
 
 
     //CONTRUCTOR
-    public Rectangulo(double largo, double ancho) {
+    public Rectangulo(double altura, double base) {
         super(nombre);
-        this.base = largo;
-        this.altura = ancho;
+        this.base = base;
+        this.altura = altura;
     }
-
-
-
-    //METODOS INDEPENDIENTES
-
-
-
 
     //METODOS SOBRESCRITOS
     /**
@@ -42,6 +35,18 @@ public class Rectangulo extends Figura implements IFigura2D {
     public String toString() {
         return nombre +
                 "Perimetro: " + perimetro();
+    }
+    @Override
+    public void print() {
+        final char CARACTER = '*';
+        for (int i = 0; i < getBase(); i++) {
+            System.out.println("");
+            for (int x = 0; x < getAltura(); x++) {
+                System.out.print(" ");
+                System.out.print(CARACTER);
+            }
+        }
+
     }
 
     //GETTERS Y SETTERS

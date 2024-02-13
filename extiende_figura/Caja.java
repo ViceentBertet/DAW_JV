@@ -1,6 +1,6 @@
 package extiende_figura;
 
-public class Caja extends Punto {
+public class Caja extends Punto{
     //ATRIBUTOS
     private double z;
     //CONSTRUCTOR

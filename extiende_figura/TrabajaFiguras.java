@@ -1,5 +1,7 @@
 package extiende_figura;
 
+import java.util.ArrayList;
+
 public class TrabajaFiguras {
 
     public static void main (String [] args ) {
@@ -15,9 +17,24 @@ public class TrabajaFiguras {
         else
             System.out.println("El rectángulo de mayor area es r2");
 
-        Triangulo triangulo = new Triangulo(20.1, 20.1, 1);
+        Triangulo triangulo = new Triangulo(5, 5, 1);
 
         System.out.println("Es triangulo mayor que r1: " + triangulo.mayorQue(r1));
-    }
 
+        ArrayList<Figura> figuras = new ArrayList<>();
+        figuras.add(new Rectangulo(10, 20));
+        figuras.add(new Rectangulo(5, 10));
+        figuras.add(new Rectangulo(2, 4));
+        figuras.add(new Rectangulo(8, 16));
+        figuras.add(new Triangulo(10, 12, 1));
+        figuras.add(new Triangulo(7, 6, 1));
+        figuras.add(new Triangulo(3, 5, 1));
+        figuras.add(new Triangulo(4, 4, 1));
+        figuras.add(new Circulo(2));
+        figuras.add(new Circulo(4));
+        figuras.add(new Circulo(6));
+        figuras.add(new Circulo(8));
+        // No nos deja ordenar, nos da error
+        //Collections.sort(figuras);
+    }
 }

@@ -1,6 +1,6 @@
 package extiende_figura;
 
-public class Triangulo extends Figura implements IFigura2D{
+public class Triangulo extends Figura implements IFigura2D, Printable{
     
     //ATRIBUTOS
     private final double base;
@@ -73,6 +73,18 @@ public class Triangulo extends Figura implements IFigura2D{
                 "BASE: " + getBase() +
                 "ALTURA " + getAltura() +
                 "PERIMETRO: " + perimetro();
+    }
+    @Override
+    public void print() {
+        final char CARACTER = '*';
+        int contador = 0;
+        for (int i = 0; i < getAltura(); i++) {
+            System.out.println("");
+            for (int x = 0; x < i; x++) {
+                System.out.print(" ");
+                System.out.print(CARACTER);
+            }
+        }
     }
     //GETTERS Y SETTERS
 
