@@ -4,7 +4,7 @@ import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
-public class TwoPlayers implements IMultiplication {
+public class TwoPlayers implements IMultiplication, IJuego {
     private int producto;
     public TwoPlayers() {
     }
@@ -53,6 +53,6 @@ public class TwoPlayers implements IMultiplication {
         } else {
             System.out.println("El jugador 2 ha ganado");
         }
-        System.out.println("¡El jugador numero" + perdedor + " ha  fallado!");
+        System.out.println("¡El jugador numero " + perdedor + " ha  fallado!");
     }
 }

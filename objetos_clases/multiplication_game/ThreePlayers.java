@@ -3,7 +3,7 @@ package objetos_clases.multiplication_game;
 import java.util.Random;
 import java.util.Scanner;
 
-public class ThreePlayers implements IMultiplication {
+public class ThreePlayers implements IMultiplication, IJuego {
     private int producto;
     public ThreePlayers() {
     }
@@ -61,6 +61,6 @@ public class ThreePlayers implements IMultiplication {
         } else {
             System.out.println("Los jugadores 2 y 3 han ganado");
         }
-        System.out.println("¡El jugador numero" + perdedor + " ha  fallado!");
+        System.out.println("¡El jugador numero " + perdedor + " ha  fallado!");
     }
 }

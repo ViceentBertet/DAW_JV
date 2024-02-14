@@ -16,12 +16,13 @@ public class GestionJuegos {
         int jugar = sc.nextInt();
         switch (jugar) {
             case 1:
-                System.out.println("Has elegido " + juegos.get(jugar));
+                System.out.println("Has elegido " + juegos.get(jugar - 1));
                 multiGame();
                 break;
             case 2:
-                System.out.println("Has elegido " + juegos.get(jugar));
-                //jugar al ahorcado
+                System.out.println("Has elegido " + juegos.get(jugar - 1));
+                Ahorcado aho = new Ahorcado();
+                aho.jugar();
                 break;
             default:
                 System.out.println("El n elegido no corresponde a ningun juego.");
