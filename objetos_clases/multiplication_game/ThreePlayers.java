@@ -44,7 +44,7 @@ public class ThreePlayers implements IMultiplication, IJuego {
                 if (!isCorrect) {
                     perdedor = 2;
                 } else {
-                    System.out.println("Respuesta jugador 2: ");
+                    System.out.println("Respuesta jugador 3: ");
                     respuesta = sc.nextInt();
                     isCorrect = comprovarRespuesta(respuesta);
                     if (!isCorrect) {
