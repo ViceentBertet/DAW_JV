@@ -86,13 +86,12 @@ public class Ahorcado implements IJuego{
             for(int j = 0; j < INTENTOS; j++) {
                 int nIntento = j + 1;
                 System.out.println("INTENTO " + nIntento);
-                if (j == 5){
+                if (j == INTENTOS / NJUGADORES){
                     System.out.println("El tema es " + adivinar.getTipo());
                 }
-
                 resolver();
-
                 if (adivinar.getTexto().equals(palabra.toString())) {
+                    System.out.println("¡ENHORABUENA, HAS GANADO!");
                     break;
                 }
             }
@@ -122,25 +121,34 @@ public class Ahorcado implements IJuego{
         }
         return 0;
     }
-    public int resolver() {
+    public void resolver() {
+        String letra;
+        String respuesta;
+        int jugador;
         for (int i = 1; i <= NJUGADORES; i++) {
-            String letra;
-            int jugador;
+            System.out.println("\nJUGADOR " + i);
 
-            System.out.println("¿Quieres resolver? (s/n)");
-            String respuesta = sc.nextLine();
+            System.out.print("¿Quieres resolver? (s/n)");
+            respuesta = sc.nextLine().toLowerCase();
+
+
             if (respuesta.equals("n")) {
-                System.out.print("Jugador 2:");
+                System.out.print("Introduce tu respuesta: ");
                 letra = sc.nextLine().toUpperCase();
                 jugador = intento(letra);
 
                 if (jugador == 1) {
                     System.out.println("ENHORABUENA: La palabra era " + adivinar.getTexto());
-                    System.out.println("¡El jugador 2 ha ganado!");
-                    System.out.println("¡El jugador 1 ha perdido!");
+                    System.out.printf("¡El jugador %d ha ganado!\n", i);
                 }
             } else if (respuesta.equals("s")) {
+                System.out.print("Introduce tu respuesta: ");
+                respuesta = sc.nextLine().toUpperCase();
 
+                if (adivinar.getTexto().equals(respuesta)) {
+                    palabra.delete(0, palabra.toString().length());
+                    palabra.append(adivinar.getTexto());
+                }
             } else {
                 System.out.println("El dato introducido debe ser s o n. Has perdido el turno");
             }
