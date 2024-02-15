@@ -76,32 +76,27 @@ public class Ahorcado implements IJuego{
     }
     @Override
     public void jugar() {
-        for (int i = 0; i < incognitas.length; i++) {
-            int nPalabra = i + 1;
-            adivinar = incognitas[i];
-            crearPalabra();
+        Random rnd = new Random();
+        adivinar = incognitas[rnd.nextInt(6)];
+        crearPalabra();
 
-            System.out.println("\nPALABRA " + nPalabra);
-
-            for(int j = 0; j < INTENTOS; j++) {
-                int nIntento = j + 1;
-                System.out.println("INTENTO " + nIntento);
-                if (j == INTENTOS / NJUGADORES){
-                    System.out.println("El tema es " + adivinar.getTipo());
-                }
-                resolver();
-                if (adivinar.getTexto().equals(palabra.toString())) {
-                    System.out.println("¡ENHORABUENA, HAS GANADO!");
-                    break;
-                }
+        for(int i = 0; i < INTENTOS; i++) {
+            int nIntento = i + 1;
+            System.out.println("INTENTO " + nIntento);
+            if (i == INTENTOS / NJUGADORES){
+                System.out.println("El tema es " + adivinar.getTipo());
             }
-            if (!adivinar.getTexto().equals(palabra.toString())) {
-                System.out.println("¡Que mala suerte! Los dos habeis perdido");
-                System.out.println("La palabra era " + adivinar.getTexto());
+            resolver();
+            if (adivinar.getTexto().equals(palabra.toString())) {
+                break;
             }
         }
+        if (!adivinar.getTexto().equals(palabra.toString())) {
+            System.out.println("¡Que mala suerte! Los dos habeis perdido");
+            System.out.println("La palabra era " + adivinar.getTexto());
+        }
     }
-    public int intento(String frase) {
+    public void intento(String frase) {
         if(esLetra(frase)) {
             char letra = frase.charAt(0);
             int encontrada = encontrarLetra(letra);
@@ -116,10 +111,6 @@ public class Ahorcado implements IJuego{
         } else {
             System.out.println("El dato introducido debe ser una letra. Has perdido el turno");
         }
-        if (adivinar.getTexto().equals(palabra.toString())) {
-            return 1;
-        }
-        return 0;
     }
     public void resolver() {
         String letra;
@@ -128,19 +119,15 @@ public class Ahorcado implements IJuego{
         for (int i = 1; i <= NJUGADORES; i++) {
             System.out.println("\nJUGADOR " + i);
 
-            System.out.print("¿Quieres resolver? (s/n)");
+            System.out.print("¿Quieres resolver? (s/n) ");
             respuesta = sc.nextLine().toLowerCase();
 
 
             if (respuesta.equals("n")) {
                 System.out.print("Introduce tu respuesta: ");
                 letra = sc.nextLine().toUpperCase();
-                jugador = intento(letra);
+                intento(letra);
 
-                if (jugador == 1) {
-                    System.out.println("ENHORABUENA: La palabra era " + adivinar.getTexto());
-                    System.out.printf("¡El jugador %d ha ganado!\n", i);
-                }
             } else if (respuesta.equals("s")) {
                 System.out.print("Introduce tu respuesta: ");
                 respuesta = sc.nextLine().toUpperCase();
@@ -148,6 +135,8 @@ public class Ahorcado implements IJuego{
                 if (adivinar.getTexto().equals(respuesta)) {
                     palabra.delete(0, palabra.toString().length());
                     palabra.append(adivinar.getTexto());
+                    System.out.printf("¡El jugador %d ha ganado!\n", i);
+                    break;
                 }
             } else {
                 System.out.println("El dato introducido debe ser s o n. Has perdido el turno");
