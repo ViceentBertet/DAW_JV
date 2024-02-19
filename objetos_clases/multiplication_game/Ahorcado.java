@@ -115,7 +115,7 @@ public class Ahorcado implements IJuego{
     public void resolver() {
         String letra;
         String respuesta;
-        int jugador;
+
         for (int i = 1; i <= NJUGADORES; i++) {
             System.out.println("\nJUGADOR " + i);
 

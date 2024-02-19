@@ -1,30 +1,26 @@
 package extiende_figura;
 
 public class Triangulo extends Figura implements IFigura2D, Printable{
-    
-    //ATRIBUTOS
     private final double base;
-    private final double altura;
+    private final double height;
     private final int type;
     private final static String nombre = "TRIANGULO";
 
-
-    //CONSTRUCTOR
-    /**
-     * Base from the triangle, height and the number of equal sides
-     */
     public Triangulo(double base, double altura, int type) {
         super(nombre);
         this.base = base;
-        this.altura = altura;
+        this.height = altura;
         this.type = type;
     }
-
-    //METODOS INDEPENDIANTES
-
-    /**
-     * Determine triengle type information
-     * */
+    public double getBase() {
+        return base;
+    }
+    public double getHeight() {
+        return height;
+    }
+    public int getType() {
+        return type;
+    }
     public String tipoTriangulo() {
         String tipo = " EQUILATERO";
         if (getType() == 1){
@@ -34,51 +30,34 @@ public class Triangulo extends Figura implements IFigura2D, Printable{
         }
         return tipo;
     }
-
-    
-    //METODOS SOBRESCRITOS
     @Override
     public double area() {
-        return (base * altura)/2;
+        return (base * height)/2;
     }
-
     @Override
     public double perimetro() {
-        double perimetro;
-        switch (getType()) {
-                //ESCALENO
-            case 1:
-                perimetro = Math.pow(getBase(), 2) + Math.pow(getAltura(), 2);
-                break;
-
-                //ISOSCELES
-            case 2:
-                perimetro = getBase() + Math.cbrt((Math.pow((getBase() / 2), 2) + Math.pow(getAltura(), 2))) * 2;
-                break;
-
-                //EQUILATERO
-            case 3:
-                perimetro = getBase() * 3;
-                break;
-
-            default: perimetro = -1;
-        }
-        return perimetro;
+        return switch (getType()) {
+            //ESCALENO
+            case 1 -> Math.pow(getBase(), 2) + Math.pow(getHeight(), 2);
+            //ISOSCELES
+            case 2 -> getBase() + Math.cbrt((Math.pow((getBase() / 2), 2) + Math.pow(getHeight(), 2))) * 2;
+            //EQUILATERO
+            case 3 -> getBase() * 3;
+            default -> -1;
+        };
     }
-
     @Override
     public String toString() {
         return nombre +
                 tipoTriangulo() +
                 "BASE: " + getBase() +
-                "ALTURA " + getAltura() +
+                "ALTURA " + getHeight() +
                 "PERIMETRO: " + perimetro();
     }
     @Override
     public void print() {
         final char CARACTER = '*';
-        int contador = 0;
-        for (int i = 0; i < getAltura(); i++) {
+        for (int i = 0; i < getHeight(); i++) {
             System.out.println("");
             for (int x = 0; x < i; x++) {
                 System.out.print(" ");
@@ -86,15 +65,5 @@ public class Triangulo extends Figura implements IFigura2D, Printable{
             }
         }
     }
-    //GETTERS Y SETTERS
 
-    public double getBase() {
-        return base;
-    }
-    public double getAltura() {
-        return altura;
-    }
-    public int getType() {
-        return type;
-    }
 }

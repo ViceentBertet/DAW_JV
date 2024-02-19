@@ -1,24 +1,31 @@
 package extiende_figura;
 
-public class Caja extends Punto{
-    //ATRIBUTOS
-    private double z;
-    //CONSTRUCTOR
-    public Caja(double x, double y, double z) {
-        super(x, y);
-        this.z = z;
+public class Caja implements IFigura3D{
+    private Rectangulo rectangle;
+    private double profundity;
+    public Caja(Rectangulo rectangle, double profundity) {
+        this.rectangle = rectangle;
+        this.profundity = profundity;
+        if (profundity < 0) profundity = 1;
     }
-    //GETTERS AND SETTERS
-    public double getZ() {
-        return z;
+    public void setRectangle(Rectangulo rectangle) {
+        this.rectangle = rectangle;
     }
-    public void setZ(double z) {
-        this.z = z;
+    public void setProfundity(double profundity) {
+        this.profundity = profundity;
     }
-    //METODOS
-    public double distancia(Caja a, Caja b){
-        double dist = ((a.getY() - b.getY()) * 2 + (a.getX() - b.getY()) * 2 + (a.getZ() - b.getZ()) * 2)  * 1/2;
-        return dist;
+    public Rectangulo getRectangle() {
+        return rectangle;
     }
-
+    public double getProfundity() {
+        return profundity;
+    }
+    @Override
+    public double area() {
+        return rectangle.area();
+    }
+    @Override
+    public double volumen() {
+        return rectangle.area() * getProfundity();
+    }
 }

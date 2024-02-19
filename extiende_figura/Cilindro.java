@@ -3,26 +3,30 @@ package extiende_figura;
 public class Cilindro extends Figura implements IFigura3D {
 
     //ATRIBUTOS
-    private double radius;
+    private Circulo circle;
     private double height;
-    private final static String nombre = "CILINDRO";
-    private Caja centro;
+    private final static String name = "CILINDRO";
     //CONSTRUCTOR
 
-    public Cilindro(double radius, double height, Caja centro) {
-        super(nombre);
-        this.radius = radius;
+    public Cilindro(Circulo circle, double height) {
+        super(name);
+        this.circle = circle;
         this.height = height;
-        this.centro = centro;
     }
 
-    //GETTERS AND SETTERS
     public double getRadius() {
-        return radius;
+        return circle.getRadius();
     }
     public double getHeight() {
         return height;
     }
+    public void setCircle(Circulo circle) {
+        this.circle = circle;
+    }
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
     //METODOS
     @Override
     public double area() {
@@ -30,9 +34,6 @@ public class Cilindro extends Figura implements IFigura3D {
     }
     @Override
     public double volumen() {
-        return Math.round((Math.PI * Math.pow(getRadius(), 2) * getHeight()) * 100) / 100;
+        return (double) Math.round((Math.PI * Math.pow(getRadius(), 2) * getHeight()) * 100) / 100;
     }
-
-
-
 }
