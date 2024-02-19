@@ -1,47 +1,32 @@
 package objetos_clases.multiplication_game;
 
-import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
-public class TwoPlayers implements IMultiplication, IJuego {
-    private int producto;
+public class TwoPlayers implements IMultiplication, IAhorcado {
+    private Multiplication multi = new Multiplication();
+    private Ahorcado aho = new Ahorcado();
+    private Scanner sc = new Scanner(System.in);
     public TwoPlayers() {
     }
     @Override
-    public void generarProducto() {
-        Random r = new Random();
-        int operando1 = r.nextInt(51);
-        int operando2 = r.nextInt(51);
-        System.out.println(operando1 + " por " + operando2);
-        this.producto = operando1 * operando2;
-    }
-    @Override
-    public boolean comprovarRespuesta(int respuesta) {
-        if (this.producto == respuesta) {
-            return Boolean.TRUE;
-        } else {
-            return Boolean.FALSE;
-        }
-    }
-    @Override
-    public void jugar(){
+    public void jugarMultiplication(){
         Scanner sc = new Scanner(System.in);
         int perdedor = 0;
         int respuesta;
         boolean isCorrect = true;
 
         while(isCorrect) {
-            generarProducto();
+            multi.generarProducto();
             System.out.println("Respuesta jugador 1: ");
             respuesta = sc.nextInt();
-            isCorrect = comprovarRespuesta(respuesta);
+            isCorrect = multi.comprovarRespuesta(respuesta);
             if (!isCorrect) {
                  perdedor = 1;
             } else {
                 System.out.println("Respuesta jugador 2: ");
                 respuesta = sc.nextInt();
-                isCorrect = comprovarRespuesta(respuesta);
+                isCorrect = multi.comprovarRespuesta(respuesta);
                 if (!isCorrect) {
                     perdedor = 2;
                 }
@@ -54,5 +39,28 @@ public class TwoPlayers implements IMultiplication, IJuego {
             System.out.println("El jugador 2 ha ganado");
         }
         System.out.println("¡El jugador numero " + perdedor + " ha  fallado!");
+    }
+    @Override
+    public void jugarAhorcado() {
+        Random rnd = new Random();
+        Incognita[] incognitas = aho.getIncognitas();
+        aho.setAdivinar(incognitas[rnd.nextInt(6)]);
+        aho.crearPalabra();
+
+        for(int i = 0; i < 12; i++) {
+            int nIntento = i + 1;
+            System.out.println("INTENTO " + nIntento);
+            if (i == 12 / 2){
+                System.out.println("El tema es " + aho.getAdivinar().getTipo());
+            }
+            aho.resolver();
+            if (aho.getAdivinar().getTexto().equals(aho.getPalabra().toString())) {
+                break;
+            }
+        }
+        if (!aho.getAdivinar().getTexto().equals(aho.getPalabra().toString())) {
+            System.out.println("¡Que mala suerte! Los dos habeis perdido");
+            System.out.println("La palabra era " + aho.getAdivinar().getTexto());
+        }
     }
 }

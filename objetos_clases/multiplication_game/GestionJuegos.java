@@ -17,12 +17,11 @@ public class GestionJuegos {
         switch (jugar) {
             case 1:
                 System.out.println("Has elegido " + juegos.get(jugar - 1));
-                multiGame();
+                jugarMultiplication();
                 break;
             case 2:
                 System.out.println("Has elegido " + juegos.get(jugar - 1));
-                Ahorcado aho = new Ahorcado();
-                aho.jugar();
+                jugarAhorcado();
                 break;
             default:
                 System.out.println("El n elegido no corresponde a ningun juego.");
@@ -37,17 +36,30 @@ public class GestionJuegos {
             System.out.println(nJuego + ": " + juegos.get(i));
         }
     }
-    public static void multiGame(){
+    public static void jugarMultiplication(){
         System.out.print("¿Cuantos jugadores (2/3)? ");
         int nPlayers = sc.nextInt();
         if (nPlayers != 2 && nPlayers != 3) {
             System.out.println("Numero de jugadores incorrecto");
-        } else if (nPlayers == 2) {
-            TwoPlayers two = new TwoPlayers();
-            two.jugar();
+        } else if (nPlayers == 2){
+           TwoPlayers dos = new TwoPlayers();
+           dos.jugarMultiplication();
         } else {
-            ThreePlayers three = new ThreePlayers();
-            three.jugar();
+            ThreePlayers tres = new ThreePlayers();
+            tres.jugarMultiplication();
+        }
+    }
+    public static void jugarAhorcado() {
+        System.out.print("¿Cuantos jugadores (2/3)? ");
+        int nPlayers = sc.nextInt();
+        if (nPlayers != 2 && nPlayers != 3) {
+            System.out.println("Numero de jugadores incorrecto");
+        } else if (nPlayers == 2){
+            TwoPlayers dos = new TwoPlayers();
+            dos.jugarAhorcado();
+        } else {
+            ThreePlayers tres = new ThreePlayers();
+            tres.jugarAhorcado();
         }
     }
 }

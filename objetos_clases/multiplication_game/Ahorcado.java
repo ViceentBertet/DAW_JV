@@ -3,13 +3,11 @@ package objetos_clases.multiplication_game;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Ahorcado implements IJuego{
+public class Ahorcado {
     private Scanner sc = new Scanner(System.in);
     private final Incognita[] incognitas = new Incognita[6];
     private Incognita adivinar;
     private StringBuilder palabra = new StringBuilder();
-    private final int NJUGADORES = 2;
-    private final int INTENTOS = 12 / NJUGADORES;
 
     public Ahorcado() {
         Incognita[] peliculas = new Incognita[5];
@@ -53,10 +51,25 @@ public class Ahorcado implements IJuego{
             }
         }
     }
+    public void setAdivinar(Incognita adivinar) {
+        this.adivinar = adivinar;
+    }
+    public void setPalabra(StringBuilder palabra) {
+        this.palabra = palabra;
+    }
+    public Incognita[] getIncognitas() {
+        return incognitas;
+    }
+    public Incognita getAdivinar() {
+        return adivinar;
+    }
+    public StringBuilder getPalabra() {
+        return palabra;
+    }
     public void crearPalabra(){
         palabra.append("-".repeat(adivinar.getTexto().length()));
     }
-    public boolean esLetra(String letra) {
+    public static boolean esLetra(String letra) {
         if (letra.length() == 1) {
             return Boolean.TRUE;
         } else {
@@ -74,39 +87,17 @@ public class Ahorcado implements IJuego{
         }
         return encontrado;
     }
-    @Override
-    public void jugar() {
-        Random rnd = new Random();
-        adivinar = incognitas[rnd.nextInt(6)];
-        crearPalabra();
-
-        for(int i = 0; i < INTENTOS; i++) {
-            int nIntento = i + 1;
-            System.out.println("INTENTO " + nIntento);
-            if (i == INTENTOS / NJUGADORES){
-                System.out.println("El tema es " + adivinar.getTipo());
-            }
-            resolver();
-            if (adivinar.getTexto().equals(palabra.toString())) {
-                break;
-            }
-        }
-        if (!adivinar.getTexto().equals(palabra.toString())) {
-            System.out.println("¡Que mala suerte! Los dos habeis perdido");
-            System.out.println("La palabra era " + adivinar.getTexto());
-        }
-    }
     public void intento(String frase) {
-        if(esLetra(frase)) {
+        if(Ahorcado.esLetra(frase)) {
             char letra = frase.charAt(0);
             int encontrada = encontrarLetra(letra);
 
             if (encontrada == 0) {
                 System.out.println("La letra no esta en la palabra :(");
-                System.out.println("La palabra contiene " + palabra);
+                System.out.println("La palabra contiene " + getPalabra().toString());
             } else {
                 System.out.println("Enhorabuena la palabra si contenia la letra :)");
-                System.out.println("La palabra contiene " + palabra);
+                System.out.println("La palabra contiene " + getPalabra().toString());
             }
         } else {
             System.out.println("El dato introducido debe ser una letra. Has perdido el turno");
@@ -116,7 +107,7 @@ public class Ahorcado implements IJuego{
         String letra;
         String respuesta;
 
-        for (int i = 1; i <= NJUGADORES; i++) {
+        for (int i = 1; i <= 3; i++) {
             System.out.println("\nJUGADOR " + i);
 
             System.out.print("¿Quieres resolver? (s/n) ");
@@ -132,9 +123,9 @@ public class Ahorcado implements IJuego{
                 System.out.print("Introduce tu respuesta: ");
                 respuesta = sc.nextLine().toUpperCase();
 
-                if (adivinar.getTexto().equals(respuesta)) {
-                    palabra.delete(0, palabra.toString().length());
-                    palabra.append(adivinar.getTexto());
+                if (getAdivinar().getTexto().equals(respuesta)) {
+                    getPalabra().delete(0, getPalabra().toString().length());
+                    getPalabra().append(getAdivinar().getTexto());
                     System.out.printf("¡El jugador %d ha ganado!\n", i);
                     break;
                 }
