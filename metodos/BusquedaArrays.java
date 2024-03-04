@@ -24,12 +24,17 @@ public class BusquedaArrays {
         System.out.println("Introduce la palabra que quieres buscar");
         String buscar = sc.next();
         int posicion = -1;
-        for (int i = 0; i < palabras.length;i++){
-            if (buscar.equalsIgnoreCase(palabras[i])) {
-                posicion = i;
-                break;
+        try {
+            for (int i = 0; i < palabras.length;i++){
+                if (buscar.equalsIgnoreCase(palabras[i])) {
+                    posicion = i;
+                    break;
+                }
             }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Ha habido un error");
         }
+
         if (posicion != -1) {
             System.out.printf("La palabra %s estaba en la posicion %d", buscar, posicion);
         } else {

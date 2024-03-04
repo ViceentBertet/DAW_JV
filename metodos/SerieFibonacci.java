@@ -1,14 +1,20 @@
 package metodos;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SerieFibonacci {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce el n que quieres ver de la serie de Fibonacci");
-        int[] array = new int[sc.nextInt()];
-        saveFibonacci(array);
-        showFibonacci(array);
+        try {
+            int[] array = new int[sc.nextInt()];
+            saveFibonacci(array);
+            showFibonacci(array);
+        } catch (InputMismatchException e){
+            System.out.println("Se debe introducir un valor numerico");
+        }
+
     }
     public static void saveFibonacci(int[] n){
         int anterior = 0;
