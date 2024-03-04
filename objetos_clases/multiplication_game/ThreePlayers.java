@@ -12,7 +12,6 @@ public class ThreePlayers implements IMultiplication, IAhorcado {
     //Multiplication
     @Override
     public void jugarMultiplication(){
-        Scanner sc = new Scanner(System.in);
         int perdedor = 0;
         int respuesta;
         boolean isCorrect = true;
@@ -39,6 +38,7 @@ public class ThreePlayers implements IMultiplication, IAhorcado {
                     }
                 }
             }
+            sc.close();
         }
 
         if (perdedor != 1 && perdedor != 2) {

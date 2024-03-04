@@ -12,14 +12,14 @@ public class TrabajaFiguras {
         Rectangulo r2 = new Rectangulo(8.6, 33.1);
         System.out.println("Area de r2 = " + r2.area());
 
-        if (IFigura.mayorQue(r1, r2))
+        if (Rectangulo.mayorQue(r1, r2))
             System.out.println("El rectángulo de mayor area es r1");
         else
             System.out.println("El rectángulo de mayor area es r2");
 
         Triangulo triangulo = new Triangulo(5, 5, 1);
 
-        System.out.println("Es triangulo mayor que r1: " + IFigura.mayorQue(triangulo, r1));
+        System.out.println("Es triangulo mayor que r1: " + Figura.mayorQue(triangulo, r1));
 
         ArrayList<Figura> figuras = new ArrayList<>();
         figuras.add(new Rectangulo(10, 20));

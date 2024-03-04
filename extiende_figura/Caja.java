@@ -1,9 +1,11 @@
 package extiende_figura;
 
-public class Caja implements IFigura3D{
+public class Caja extends Figura implements IFigura3D{
     private Rectangulo rectangle;
     private double profundity;
+    private final static String NAME = "CAJA";
     public Caja(Rectangulo rectangle, double profundity) {
+        super(NAME);
         this.rectangle = rectangle;
         this.profundity = profundity;
         if (profundity < 0) profundity = 1;

@@ -6,28 +6,28 @@ import java.util.Scanner;
 public class GestionJuegos {
     private static Scanner sc = new Scanner(System.in);
     private static ArrayList<String> juegos = new ArrayList<>();
+
     public static void main(String[] args) {
         juegos.add("Multiplication Game");
         juegos.add("El ahorcado");
 
-
         System.out.println("Introduce el n del juego que quieres jugar");
         mostrarJuegos();
         int jugar = sc.nextInt();
+
         switch (jugar) {
             case 1:
-                System.out.println("Has elegido " + juegos.get(jugar - 1));
+                System.out.println("Has elegido " + juegos.get(0));
                 jugarMultiplication();
                 break;
             case 2:
-                System.out.println("Has elegido " + juegos.get(jugar - 1));
+                System.out.println("Has elegido " + juegos.get(1));
                 jugarAhorcado();
                 break;
             default:
-                System.out.println("El n elegido no corresponde a ningun juego.");
+                System.out.println("El n elegido no corresponde a ningún juego.");
         }
-
-
+        sc.close();
     }
     public static void mostrarJuegos(){
         int nJuego;

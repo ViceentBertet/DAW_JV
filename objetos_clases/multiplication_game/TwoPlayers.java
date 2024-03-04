@@ -11,7 +11,6 @@ public class TwoPlayers implements IMultiplication, IAhorcado {
     }
     @Override
     public void jugarMultiplication(){
-        Scanner sc = new Scanner(System.in);
         int perdedor = 0;
         int respuesta;
         boolean isCorrect = true;
@@ -39,6 +38,7 @@ public class TwoPlayers implements IMultiplication, IAhorcado {
             System.out.println("El jugador 2 ha ganado");
         }
         System.out.println("¡El jugador numero " + perdedor + " ha  fallado!");
+        sc.close();
     }
     @Override
     public void jugarAhorcado() {

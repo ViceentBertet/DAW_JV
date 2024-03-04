@@ -1,46 +1,42 @@
 package extiende_figura;
 
-public class Circulo extends Figura implements IFigura2D, Printable{
+import java.util.Objects;
+
+public class Circulo extends Figura implements IFigura2D, Printable, Cloneable{
     //ATRIBUTOS
     private double radius;
-    private final static String name = "CIRCULO";
     private Punto center;
-
+    private final static String NAME = "CIRCULO";
     //CONSTRUCTOR
     public Circulo(double radio) {
-        super(name);
+        super(NAME);
         this.radius = radio;
     }
-
     public Circulo(double radio, Punto centro) {
-        super(name);
+        super(NAME);
         this.radius = radio;
         this.center = centro;
     }
-
-    //METODOS INDEPENDENTES
+    public double getRadius() {
+        return radius;
+    }
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+    public Punto getCenter() {
+        return center;
+    }
+    public void setCenter(Punto center) {
+        this.center = center;
+    }
     public double diametro(){
         return getRadius() * 2;
     }
-
-    public Punto getCenter() {
-        return this.center;
-    }
-
-    //METODOS SOBRESCRITOS
     @Override
     public double area() {
         return Math.PI * Math.pow(getRadius(), 2);
     }
-    @Override
-    public String toString() {
 
-        return  name +
-                "Radio: " + getRadius() +
-                "Area: " + area() +
-                "Diametro: " + diametro() +
-                "Perimetro: " + perimetro();
-    }
     @Override
     public double perimetro() {
         return Math.PI * diametro();
@@ -67,9 +63,27 @@ public class Circulo extends Figura implements IFigura2D, Printable{
             }
         }
     }
-    //GETTERS Y SETTERS
-    public double getRadius() {
-        return radius;
-    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Circulo circulo = (Circulo) o;
+        return Double.compare(radius, circulo.radius) == 0 && Objects.equals(center, circulo.center);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(radius, center);
+    }
+    @Override
+    public String toString() {
+        return NAME + "{" +
+                "radius=" + radius +
+                ", center=" + center +
+                '}';
+    }
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
