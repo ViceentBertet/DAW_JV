@@ -1,4 +1,4 @@
-package objetos_clases.fernando_vicent;
+package objetos_clases.casa;
 
 public class Qutil {
     protected static boolean esVocal(char letra) {

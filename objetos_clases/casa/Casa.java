@@ -1,4 +1,4 @@
-package objetos_clases.fernando_vicent;
+package objetos_clases.casa;
 
 public class Casa {
     private String calle;
@@ -19,16 +19,22 @@ public class Casa {
         this.nombre = nombre;
         this.poblacion = poblacion;
     }
-    public Casa(String calle, int nombre, String poblacion, double superficie, boolean garaje, int antiguedad) {
-        this(calle, nombre, poblacion);
+    public Casa(String calle, int nombre, String poblacion, double superficie, boolean garaje, int antiguedad) throws SuperficieException, EdadException {
         if (superficie > SUPERFICIE_MINIMA) {
             this.superficie = superficie;
         } else {
-            System.out.println("Se ha establecido la superficie minima de 43,5 m cuadrados");
-            this.superficie = SUPERFICIE_MINIMA;
+            throw new SuperficieException("ERROR: La superficie debe ser minimo de 43.5 m2");
         }
+        if (antiguedad > 0) {
+            this.antiguedad = antiguedad;
+        } else {
+            throw new EdadException("ERROR: La antiguedad no puede ser inferior a 1");
+        }
+        this.calle = calle;
+        this.nombre = nombre;
+        this.poblacion = poblacion;
         this.garaje = garaje;
-        this.antiguedad = antiguedad;
+
     }
     public String getCalle() {
         return calle;
@@ -51,12 +57,11 @@ public class Casa {
     public double getSuperficie() {
         return superficie;
     }
-    public void setSuperficie(double superficie) {
+    public void setSuperficie(double superficie) throws SuperficieException{
         if (superficie > SUPERFICIE_MINIMA) {
             this.superficie = superficie;
         } else {
-            System.out.println("Se ha establecido la superficie minima de 43,5 m cuadrados");
-            this.superficie = SUPERFICIE_MINIMA;
+            throw new SuperficieException("ERROR: La superficie debe ser minimo de 43.5 m2");
         }
     }
     public boolean getGaraje() {
@@ -68,8 +73,12 @@ public class Casa {
     public int getAntiguedad() {
         return antiguedad;
     }
-    public void setAntiguedad(int antiguedad) {
-        this.antiguedad = antiguedad;
+    public void setAntiguedad(int antiguedad) throws EdadException{
+        if (antiguedad > 0){
+            this.antiguedad = antiguedad;
+        } else {
+            throw new EdadException("ERROR: La antiguedad no puede ser inferior a 1");
+        }
     }
     public String getAdressaCompleta() {
         String datos;
