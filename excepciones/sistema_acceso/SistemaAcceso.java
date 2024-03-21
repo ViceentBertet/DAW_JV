@@ -7,11 +7,18 @@ import java.util.Scanner;
 
 public class SistemaAcceso {
     private List<Usuario> usuarios = new ArrayList<>();
-    Scanner sc;
+    private Scanner sc;
+    /**
+     * SistemaAcceso carga los usuarios
+     * @param sc Leer teclado
+     * */
     public SistemaAcceso(Scanner sc) {
         this.sc = sc;
         cargarUsuarios();
     }
+    /**
+     * Se añaden los nuevos usuarios a la lista
+     * */
     public void cargarUsuarios() {
         boolean error = false;
         try {
@@ -30,28 +37,34 @@ public class SistemaAcceso {
             System.out.println("\nSe han cargado correctamente los usuarios\n");
         }
     }
+    /**
+     * inicioSesion comprueba que el usuario existe
+     * @return posicion donde se ubica en la lista
+     * */
     public int inicioSesion(Usuario datos) {
         int encontrado = -1;
         for (int i = 0; i < usuarios.size(); i++) {
-            if (datos.getNom().equals(usuarios.get(i).getNom()) && datos.getPasswd().equals(usuarios.get(i).getPasswd())) {
+            if (datos.equals(usuarios.get(i))) {
                 encontrado = i;
                 break;
             }
         }
         if (encontrado != -1) {
-            // Mejorar actualización de datos
-            usuarios.get(encontrado).nuevoInicio();
-            if (usuarios.get(encontrado).getnInicios() == 1) {
-                System.out.println("Se ha iniciado por primera vez en  el usuario " + usuarios.get(encontrado).getNom());
-            } else {
-                System.out.println("Se han iniciado " + usuarios.get(encontrado).getnInicios() + " veces en el usuario " + usuarios.get(encontrado).getNom());
-                System.out.println("Ultimo acceso: " + usuarios.get(encontrado).getUltimoInicio().toString());
-            }
-            usuarios.get(encontrado).setUltimoInicio(LocalDateTime.now());
+            addInicio(encontrado);
         } else {
             System.out.println("ERROR: El usuario o la contraseña son incorrectos. Introducelo otra vez.");
         }
         return encontrado;
+    }
+    public void addInicio(int encontrado){
+        usuarios.get(encontrado).nuevoInicio();
+        if (usuarios.get(encontrado).getnInicios() == 1) {
+            System.out.println("Se ha iniciado por primera vez en  el usuario " + usuarios.get(encontrado).getNom());
+        } else {
+            System.out.println("Se han iniciado " + usuarios.get(encontrado).getnInicios() + " veces en el usuario " + usuarios.get(encontrado).getNom());
+            System.out.println("Ultimo acceso: " + usuarios.get(encontrado).getUltimoInicio().toString());
+        }
+        usuarios.get(encontrado).setUltimoInicio(LocalDateTime.now());
     }
     public void confirmChangePasswd(int nCuenta) {
         String passwd;
