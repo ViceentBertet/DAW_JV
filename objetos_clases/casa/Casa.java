@@ -20,19 +20,15 @@ public class Casa {
         this.poblacion = poblacion;
     }
     public Casa(String calle, int nombre, String poblacion, double superficie, boolean garaje, int antiguedad) throws SuperficieException, EdadException {
-        if (superficie > SUPERFICIE_MINIMA) {
-            this.superficie = superficie;
-        } else {
+        this(calle, nombre, poblacion);
+        if (superficie < SUPERFICIE_MINIMA) {
             throw new SuperficieException("ERROR: La superficie debe ser minimo de 43.5 m2");
         }
-        if (antiguedad > 0) {
-            this.antiguedad = antiguedad;
-        } else {
+        if (antiguedad < 0) {
             throw new EdadException("ERROR: La antiguedad no puede ser inferior a 1");
         }
-        this.calle = calle;
-        this.nombre = nombre;
-        this.poblacion = poblacion;
+        this.superficie = superficie;
+        this.antiguedad = antiguedad;
         this.garaje = garaje;
 
     }

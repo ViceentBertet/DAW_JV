@@ -1,24 +1,26 @@
 package excepciones.sistema_acceso;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public class Usuario {
     private String nom;
     private String passwd;
     private int nInicios = 0;
-    private LocalTime ultimoInicio;
-
+    private LocalDateTime ultimoInicio;
+    public Usuario(String usuario, String contra) {
+        nom = usuario;
+        passwd = contra;
+    }
+    public Usuario(String usuario, String contra, int nInicios) {
+        this(usuario, contra);
+        setnInicios(nInicios);
+    }
     public String getNom() {
         return nom;
     }
     public String getPasswd() {
         return passwd;
     }
-    public Usuario(String Usuario, String contra) {
-        nom = Usuario;
-        passwd = contra;
-    }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -28,13 +30,22 @@ public class Usuario {
     public int getnInicios() {
         return nInicios;
     }
-    public void nInicioSesion(){
+    public void nuevoInicio(){
         nInicios++;
     }
-    public void setUltimoInicio(LocalTime fecha){
+
+    public void setnInicios(int nInicios) throws IllegalArgumentException{
+        if (nInicios < 0) {
+            throw new IllegalArgumentException();
+        }
+        this.nInicios = nInicios;
+    }
+
+    public void setUltimoInicio(LocalDateTime fecha){
         ultimoInicio = fecha;
     }
-    public LocalTime getUltimoInicio(){
+    public LocalDateTime getUltimoInicio(){
         return ultimoInicio;
     }
+
 }

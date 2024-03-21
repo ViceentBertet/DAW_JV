@@ -23,8 +23,10 @@ public class GestionCasas {
         do {
             casasRestantes = CASAS.length - nCasas;
             System.out.println("\n**Gestión de casas - capacidad restante de " + casasRestantes +" casas**");
+
             introducirCasa();
             confirmarCasa();
+
             System.out.println("¿Desea ver las casas guardadas? (s/n)");
             String opcion = sc.next();
             if (opcion.equalsIgnoreCase("s")) {
@@ -42,6 +44,7 @@ public class GestionCasas {
     public static void introducirCasa() {
         boolean newGaraje = false;
         boolean error;
+        nuevaCasa = null;
         try {
             System.out.println("Introducir datos. Solo meter los datos explicitos\n");
             System.out.print("Calle: ");
@@ -71,11 +74,10 @@ public class GestionCasas {
             nuevaCasa = new Casa(newCalle, newNumero, newPoblacio, newSuperficie, newGaraje, newAntiguedad);
         } catch (InputMismatchException e) {
             System.out.println("ERROR: Tipo de dato incorrecto");
-        } catch (SuperficieException e) {
-            System.out.println(e.getMessage());
-        } catch (EdadException e) {
+        } catch (SuperficieException | EdadException e) {
             System.out.println(e.getMessage());
         }
+
 
     }
     public static void confirmarCasa() {
@@ -98,9 +100,7 @@ public class GestionCasas {
                         CASAS[nCasas] = new Casa(nuevaCasa.getCalle(), nuevaCasa.getNombre(), nuevaCasa.getPoblacion(), nuevaCasa.getSuperficie(), nuevaCasa.getGaraje(),nuevaCasa.getAntiguedad());
                         System.out.println("Los datos se han guardado correctamente");
                         nCasas++;
-                    } catch (SuperficieException e) {
-                        System.out.println(e.getMessage());
-                    } catch (EdadException e) {
+                    } catch (SuperficieException | EdadException e) {
                         System.out.println(e.getMessage());
                     }
 

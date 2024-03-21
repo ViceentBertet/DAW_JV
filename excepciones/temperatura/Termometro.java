@@ -7,11 +7,7 @@ public class Termometro {
         super();
     }
     public Termometro(String nombre, double temperatura) throws TemperaturaFueraRangoException {
-        if (temperatura >= -192 && temperatura <= 100) {
-            this.temperatura = temperatura;
-        } else {
-            throw new TemperaturaFueraRangoException("ERROR: Temperatura incorrecta");
-        }
+        setTemperatura(temperatura);
         this.nombre = nombre;
     }
     public String getNombre() {
@@ -24,10 +20,10 @@ public class Termometro {
         return temperatura;
     }
     public void setTemperatura(double temperatura) throws TemperaturaFueraRangoException {
-        if (temperatura >= -192 || temperatura <= 100) {
-            this.temperatura = temperatura;
-        } else {
+        if (temperatura < -192 || temperatura > 100) {
             throw new TemperaturaFueraRangoException("ERROR: Temperatura incorrecta");
         }
+        this.temperatura = temperatura;
+
     }
 }
