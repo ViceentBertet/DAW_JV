@@ -1,29 +1,44 @@
 package excepciones.sistema_acceso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Login {
     private static Scanner sc = new Scanner(System.in);
+    /**
+     * main El usuario mete sus datos y se mandan a validar
+     * */
     public static void main(String[] args) {
-        SistemaAcceso sa = new SistemaAcceso(sc);
-        boolean exit;
+        File fich = new File("usuarios.txt");
+        try {
+            SistemaAcceso sa = new SistemaAcceso(sc, fich);
+            boolean exit;
+            do {
+                System.out.println("**Login**\n");
+                System.out.print("Introduce tu usuario: ");
+                String user = sc.nextLine();
+                System.out.print("Introduce tu contraseña: ");
+                String contra = sc.nextLine();
 
-        do {
-            System.out.println("**Login**\n");
-            System.out.print("Introduce tu usuario: ");
-            String user = sc.nextLine();
-            System.out.print("Introduce tu contraseña: ");
-            String contra = sc.nextLine();
+                Usuario datos = new Usuario(user, contra);
+                int nCuenta = sa.inicioSesion(datos);
 
-            Usuario datos = new Usuario(user, contra);
-            int nCuenta = sa.inicioSesion(datos);
+                exit = gestionCuenta(nCuenta, sa);
 
-            exit = gestionCuenta(nCuenta, sa);
+            } while (!exit);
 
-        }while (!exit);
-        sc.close();
+        } catch (IOException e) {
+            System.out.println("No se pueden cargar los usuarios");
+        } finally {
+            sc.close();
+        }
     }
+    /**
+     * gestionCuenta se contemplan todas las acciones que puede ejecutar el usuario
+     * */
     public static boolean gestionCuenta(int nCuenta, SistemaAcceso sa) {
         boolean repeat;
         int opcion;

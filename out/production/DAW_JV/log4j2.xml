@@ -12,17 +12,18 @@
     </Appenders>
     <Loggers>
 
-        <Root level="info">
-
+        <Root level="debug">
+            <AppenderRef ref="LogToFile"/>
         </Root>
         <!--
 
                 <Logger name="teoria.demo_logger" level="error">
                     <AppenderRef ref="LogToConsole"/>
                 </Logger>
-                -->
-        <Logger name="division" level="debug">
+
+        <Logger name="daw_jv" level="debug">
             <AppenderRef ref="LogToFile"/>
         </Logger>
+        -->
     </Loggers>
 </Configuration>

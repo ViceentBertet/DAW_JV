@@ -12,17 +12,18 @@ public class Usuario {
      * Usuario crea un usuario
      * @param usuario Nombre del usuario
      * @param contra Constraseña del usuario
+     * @throws IllegalArgumentException Si contiene un ;
      * */
-    public Usuario(String usuario, String contra) {
-        nom = usuario;
-        passwd = contra;
+    public Usuario(String usuario, String contra) throws IllegalArgumentException{
+        setNom(usuario);
+        setPasswd(contra);
     }
     /**
      * Usuario crea un usuario
      * @param usuario Nombre del usuario
      * @param contra Constraseña del usuario
      * @param nInicios Numero de inicios
-     * @throws IllegalArgumentException El argumento no puede ser menor a 0
+     * @throws IllegalArgumentException nInicios no puede ser menor a 0 y nombre o contraseña contienen un ;
      * */
     public Usuario(String usuario, String contra, int nInicios) throws IllegalArgumentException {
         this(usuario, contra);
@@ -50,15 +51,27 @@ public class Usuario {
     /**
      * setNom establece el nombre de usuario
      * @param nom nuevo nombre
+     * @throws IllegalArgumentException Si contiene un ;
      * */
-    public void setNom(String nom) {
+    public void setNom(String nom) throws IllegalArgumentException {
+        for (int i = 0; i < nom.length(); i++){
+            if (nom.charAt(i) == ';') {
+                throw new IllegalArgumentException();
+            }
+        }
         this.nom = nom;
     }
     /**
      * setPasswd establece la contraseña
      * @param passwd nueva contraseña
+     * @throws IllegalArgumentException Si contiene un ;
      * */
     public void setPasswd(String passwd) {
+        for (int i = 0; i < passwd.length(); i++){
+            if (passwd.charAt(i) == ';') {
+                throw new IllegalArgumentException();
+            }
+        }
         this.passwd = passwd;
     }
     /**
