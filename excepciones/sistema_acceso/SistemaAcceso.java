@@ -96,7 +96,7 @@ public class SistemaAcceso {
             if (encontrado != -1) {
                 addInicio(encontrado);
             } else {
-                System.out.print("ERROR: El usuario o la contraseña son incorrectos. ¿Desea registrarse (si/no)? ");
+                System.out.print("ERROR: El usuario o la contraseña no existen. ¿Desea registrarse (si/no)? ");
                 String respuesta = sc.nextLine();
                 switch (respuesta.toUpperCase()) {
                     case "SI": registrarse();
