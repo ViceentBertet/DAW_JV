@@ -198,11 +198,12 @@ public class SistemaAcceso {
             switch (respuesta.toUpperCase()) {
 
                 case "SI":
-                    System.out.println("Añadiendo usuario");
+                    System.out.println("¡Usuario añadido!\n");
                     usuarios.add(new Usuario(usuario, passwd));
                     StringBuilder sb = new StringBuilder();
-                    sb.append(usuario).append(";").append(passwd);
+                    sb.append("\n").append(usuario).append(";").append(passwd);
                     fw.write(sb.toString());
+                    fw.close();
                     break;
                 case "NO":
                     System.out.println("Ha seleccionado no. El sistema se volverá a iniciar...");
