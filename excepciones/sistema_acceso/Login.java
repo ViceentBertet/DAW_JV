@@ -1,12 +1,15 @@
 package excepciones.sistema_acceso;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Login {
+    private static Logger LOGGER = LogManager.getRootLogger();
     private static Scanner sc = new Scanner(System.in);
     /**
      * main El usuario mete sus datos y se mandan a validar
@@ -32,6 +35,7 @@ public class Login {
 
         } catch (IOException e) {
             System.out.println("No se pueden cargar los usuarios");
+            LOGGER.error("IOException");
         } finally {
             sc.close();
         }
@@ -40,6 +44,7 @@ public class Login {
      * gestionCuenta se contemplan todas las acciones que puede ejecutar el usuario
      * */
     public static boolean gestionCuenta(int nCuenta, SistemaAcceso sa) {
+        //TODO añadir opcion de registrarse
         boolean repeat;
         int opcion;
         boolean exit = false;

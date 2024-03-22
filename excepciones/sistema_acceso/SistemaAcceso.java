@@ -26,9 +26,9 @@ public class SistemaAcceso {
         try {
             ficheroUsuarios();
         } catch (IOException e) {
+            LOGGER.error("SistemaAcceso");
             throw e;
         }
-
     }
     /**
      * Se añaden los nuevos usuarios a la lista
@@ -57,12 +57,10 @@ public class SistemaAcceso {
      * @throws IOException si no se encuentra el fichero
      * */
     public void ficheroUsuarios() throws IOException {
-        try {
+        try (BufferedReader br = new BufferedReader(new FileReader(fich));){
             String linea;
-            String usuario = "no";
-            String contrasenya = "no";
-            ArrayList<String> palabrasLinea = new ArrayList<>();
-            BufferedReader br = new BufferedReader(new FileReader(fich));
+            String usuario;
+            String contrasenya;
 
             while ((linea = br.readLine()) != null){
                 for (int i = 0; i < linea.length(); i++) {
@@ -76,6 +74,7 @@ public class SistemaAcceso {
 
             br.close();
         } catch (IOException e) {
+            LOGGER.error("ficheroUsuarios");
             throw e;
         }
     }
@@ -84,7 +83,8 @@ public class SistemaAcceso {
      * @return posicion donde se ubica en la lista
      * @throws IOException si no encuentra el fichero
      * */
-    public int inicioSesion(Usuario datos) throws IOException{
+    public int inicioSesion(Usuario datos) throws IOException {
+        //TODO comparar solo el usuario para saber si existe, despues comparar si la contraseña es correcta
         try {
             int encontrado = -1;
             for (int i = 0; i < usuarios.size(); i++) {
@@ -98,6 +98,7 @@ public class SistemaAcceso {
             } else {
                 System.out.print("ERROR: El usuario o la contraseña no existen. ¿Desea registrarse (si/no)? ");
                 String respuesta = sc.nextLine();
+                //TODO mejor poner valores numericos en el switch
                 switch (respuesta.toUpperCase()) {
                     case "SI": registrarse();
                                break;
@@ -108,6 +109,7 @@ public class SistemaAcceso {
             }
             return encontrado;
         } catch (IOException e) {
+            LOGGER.error("iniciosesion");
             throw e;
         }
     }
@@ -115,7 +117,7 @@ public class SistemaAcceso {
      * addInicio establece el ultimo inicio de sesion y añade un nuevo inicio
      * @param encontrado
      * */
-    public void addInicio(int encontrado){
+    public void addInicio(int encontrado) {
         usuarios.get(encontrado).nuevoInicio();
         if (usuarios.get(encontrado).getnInicios() == 1) {
             System.out.println("Se ha iniciado por primera vez en  el usuario " + usuarios.get(encontrado).getNom());
@@ -148,7 +150,7 @@ public class SistemaAcceso {
      * @param nCuenta indice de la cuenta
      * @return boolean si ha salido con exito o no
      * */
-    public boolean changePasswd(int nCuenta){
+    public boolean changePasswd(int nCuenta) {
         String passwd;
         String confirmPasswd;
         boolean exit = false;
@@ -172,7 +174,9 @@ public class SistemaAcceso {
      * registrarse añade un nuevo usuario al archivo y al arraylist
      * @throws IOException si no encuentra el archivo de usuarios
      * */
-    public void registrarse() throws IOException{
+    public void registrarse() throws IOException {
+        //TODO comprobar que el usuario nuevo no existe. IDEA: hacer un metodo validarUsuario+
+        //TODO simplificar metodo
         String usuario;
         String passwd;
         String confirmarPasswd;
@@ -194,9 +198,9 @@ public class SistemaAcceso {
             System.out.println("Y tu contraseña será: " + passwd);
             System.out.print("¿Estas de acuerdo? (si/no) ");
             String respuesta = sc.nextLine();
-            LOGGER.debug(respuesta.toUpperCase());
-            switch (respuesta.toUpperCase()) {
 
+            //TODO mejor poner valores numericos en el switch
+            switch (respuesta.toUpperCase()) {
                 case "SI":
                     System.out.println("¡Usuario añadido!\n");
                     usuarios.add(new Usuario(usuario, passwd));
@@ -212,6 +216,7 @@ public class SistemaAcceso {
                     System.out.println("Valor incorrecto. El sistema se volverá a iniciar...");
             }
         } catch (IOException e) {
+            LOGGER.error("registrarse");
             throw e;
         }
     }
