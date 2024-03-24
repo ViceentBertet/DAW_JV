@@ -78,31 +78,38 @@ public class SistemaAcceso {
             throw e;
         }
     }
+    public int validarUsuario(Usuario datos) {
+        int encontrado = -1;
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (datos.getNom().equals(usuarios.get(i).getNom())) {
+                encontrado = i;
+                break;
+            }
+        }
+        if (!datos.getPasswd().equals(usuarios.get(encontrado).getPasswd())) {
+            encontrado = -1;
+        }
+        return encontrado;
+    }
     /**
      * inicioSesion comprueba que el usuario existe
      * @return posicion donde se ubica en la lista
      * @throws IOException si no encuentra el fichero
      * */
     public int inicioSesion(Usuario datos) throws IOException {
-        //TODO comparar solo el usuario para saber si existe, despues comparar si la contraseña es correcta
         try {
-            int encontrado = -1;
-            for (int i = 0; i < usuarios.size(); i++) {
-                if (datos.equals(usuarios.get(i))) {
-                    encontrado = i;
-                    break;
-                }
-            }
+
+            int encontrado = validarUsuario(datos);
             if (encontrado != -1) {
                 addInicio(encontrado);
             } else {
-                System.out.print("ERROR: El usuario o la contraseña no existen. ¿Desea registrarse (si/no)? ");
-                String respuesta = sc.nextLine();
-                //TODO mejor poner valores numericos en el switch
-                switch (respuesta.toUpperCase()) {
-                    case "SI": registrarse();
+                System.out.print("ERROR: El usuario o la contraseña no existen. ¿Desea registrarse (1/2)? ");
+                int respuesta = sc.nextInt();
+                sc.nextLine();
+                switch (respuesta) {
+                    case 1: registrarse();
                                break;
-                    case "NO": System.out.println("Ha seleccionado no. El sistema se volverá a iniciar...");
+                    case 2: System.out.println("Ha seleccionado no. El sistema se volverá a iniciar...");
                                break;
                     default: System.out.println("Valor incorrecto. El sistema se volverá a iniciar...");
                 }
@@ -175,7 +182,6 @@ public class SistemaAcceso {
      * @throws IOException si no encuentra el archivo de usuarios
      * */
     public void registrarse() throws IOException {
-        //TODO comprobar que el usuario nuevo no existe. IDEA: hacer un metodo validarUsuario+
         //TODO simplificar metodo
         String usuario;
         String passwd;
@@ -194,27 +200,31 @@ public class SistemaAcceso {
                 }
             } while (!passwd.equals(confirmarPasswd));
 
-            System.out.println("Tu usuario será: " + usuario);
-            System.out.println("Y tu contraseña será: " + passwd);
-            System.out.print("¿Estas de acuerdo? (si/no) ");
-            String respuesta = sc.nextLine();
-
-            //TODO mejor poner valores numericos en el switch
-            switch (respuesta.toUpperCase()) {
-                case "SI":
-                    System.out.println("¡Usuario añadido!\n");
-                    usuarios.add(new Usuario(usuario, passwd));
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("\n").append(usuario).append(";").append(passwd);
-                    fw.write(sb.toString());
-                    fw.close();
-                    break;
-                case "NO":
-                    System.out.println("Ha seleccionado no. El sistema se volverá a iniciar...");
-                    break;
-                default:
-                    System.out.println("Valor incorrecto. El sistema se volverá a iniciar...");
+            if (validarUsuario(new Usuario(usuario, passwd)) != -1) {
+                System.out.println("Tu usuario será: " + usuario);
+                System.out.println("Y tu contraseña será: " + passwd);
+                System.out.print("¿Estas de acuerdo? (si/no) ");
+                int respuesta = sc.nextInt();
+                sc.nextLine();
+                switch (respuesta) {
+                    case 1:
+                        System.out.println("¡Usuario añadido!\n");
+                        usuarios.add(new Usuario(usuario, passwd));
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("\n").append(usuario).append(";").append(passwd);
+                        fw.write(sb.toString());
+                        fw.close();
+                        break;
+                    case 2:
+                        System.out.println("Ha seleccionado no. El sistema se volverá a iniciar...");
+                        break;
+                    default:
+                        System.out.println("Valor incorrecto. El sistema se volverá a iniciar...");
+                }
+            } else {
+                System.out.println("ERROR: El usuario ya existe");
             }
+
         } catch (IOException e) {
             LOGGER.error("registrarse");
             throw e;
