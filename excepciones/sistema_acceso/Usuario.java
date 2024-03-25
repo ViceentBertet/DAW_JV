@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Usuario {
+    //TODO añadir credenciales de usuario
     private String nom;
     private String passwd;
     private int nInicios = 0;

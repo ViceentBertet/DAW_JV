@@ -20,7 +20,7 @@ public class Login {
             SistemaAcceso sa = new SistemaAcceso(sc, fich);
             boolean exit;
             do {
-                System.out.println("**Login**\n");
+                System.out.println("\t**Login**\n");
                 System.out.print("Introduce tu usuario: ");
                 String user = sc.nextLine();
                 System.out.print("Introduce tu contraseña: ");
@@ -35,7 +35,7 @@ public class Login {
 
         } catch (IOException e) {
             System.out.println("No se pueden cargar los usuarios");
-            LOGGER.error("IOException");
+            LOGGER.error("IOException" + e.getStackTrace());
         } finally {
             sc.close();
         }
@@ -44,14 +44,13 @@ public class Login {
      * gestionCuenta se contemplan todas las acciones que puede ejecutar el usuario
      * */
     public static boolean gestionCuenta(int nCuenta, SistemaAcceso sa) {
-        //TODO añadir opcion de registrarse
         boolean repeat;
         int opcion;
         boolean exit = false;
-        if (nCuenta != -1){
+        if (nCuenta != -1 && nCuenta != -2){
             do {
                 repeat = false;
-                System.out.println("\n**Gestión de la cuenta**");
+                System.out.println("\n\t**Gestión de la cuenta**");
                 System.out.println("\t1: Cambiar contraseña");
                 System.out.println("\t2: Cerrar sesión");
                 System.out.println("\t3: Terminar el programa ");
