@@ -8,6 +8,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+/**
+ * SistemaAcceso Contiene toda la logica relacionada con los usuarios
+ * @author Viceent.Bertet
+ * */
 
 public class SistemaAcceso {
     private static Logger LOGGER = LogManager.getRootLogger();

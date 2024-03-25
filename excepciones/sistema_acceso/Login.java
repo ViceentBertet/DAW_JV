@@ -7,6 +7,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+/**
+ * Login Se encarga de gestionar al usuario
+ * @author Viceent.Bertet
+ * */
 
 public class Login {
     private static Logger LOGGER = LogManager.getRootLogger();
