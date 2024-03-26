@@ -16,10 +16,10 @@ public class LeerEscribir {
         try {
             //escribirPrintWriter(fich1);
             //leerScanner(fich1);
-            //escribirBuffered(fich2);
-            //leerBuffered(fich2);
-            escribirStream(fich3);
-            leerStream(fich3);
+            escribirBuffered(fich2);
+            leerBuffered(fich2);
+            //escribirStream(fich3);
+            //leerStream(fich3);
         } catch (IOException e){
             LOGGER.error("IOEXCEPTION," + e.getStackTrace());
         } catch (InputMismatchException e) {
