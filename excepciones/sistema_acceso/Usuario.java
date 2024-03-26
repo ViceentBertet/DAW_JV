@@ -3,6 +3,11 @@ package excepciones.sistema_acceso;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Usuario se encarga de definir un usuario para utilizarlo en el sistema
+ * @author Viceent.Bertet
+ * */
+
 public class Usuario {
     //TODO añadir credenciales de usuario
     private String nom;
