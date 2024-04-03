@@ -48,6 +48,7 @@ public class SistemaAcceso {
             usuarios.add(new Usuario("Jordi", "si", 7));
             usuarios.add(new Usuario("Hugo", "no", 9));
         } catch (IllegalArgumentException e) {
+            LOGGER.error("cargarUsuarios");
             System.out.println("\nERROR: El número de inicios no es correcto");
             error = true;
         }
@@ -91,7 +92,7 @@ public class SistemaAcceso {
             }
         }
         if (!datos.getPasswd().equals(usuarios.get(encontrado).getPasswd())) {
-            encontrado = -1;
+            encontrado = -2;
         }
         return encontrado;
     }
@@ -102,12 +103,13 @@ public class SistemaAcceso {
      * */
     public int inicioSesion(Usuario datos) throws IOException {
         try {
-
             int encontrado = validarUsuario(datos);
-            if (encontrado != -1) {
+            if (encontrado != -1 && encontrado != -2) {
                 addInicio(encontrado);
+            } else if (encontrado == -2) {
+                System.out.println("ERROR: Contraseña incorrecta. Vuelvelo a intentar...\n");
             } else {
-                System.out.print("ERROR: El usuario o la contraseña no existen. ¿Desea registrarse (1/2)? ");
+                System.out.print("ERROR: El usuario no existe. ¿Desea registrarse (1/2)? ");
                 int respuesta = sc.nextInt();
                 sc.nextLine();
                 switch (respuesta) {
@@ -140,7 +142,7 @@ public class SistemaAcceso {
     }
     /**
      * confirmChangePasswd valida la contraseña para poder ser cambiada
-     * @param nCuenta indice de la cuenta
+     *      @param nCuenta indice de la cuenta
      * */
     public void confirmChangePasswd(int nCuenta) {
         String passwd;
@@ -162,6 +164,7 @@ public class SistemaAcceso {
      * @return boolean si ha salido con exito o no
      * */
     public boolean changePasswd(int nCuenta) {
+        //TODO cambiar contraseña en el fichero
         String passwd;
         String confirmPasswd;
         boolean exit = false;
