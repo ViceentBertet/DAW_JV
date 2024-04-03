@@ -14,10 +14,10 @@ public class LeerEscribir {
         File fich2 = new File("ficheroBuffered.txt");
         File fich3 = new File("ficheroStream.txt");
         try {
-            //escribirPrintWriter(fich1);
-            //leerScanner(fich1);
-            escribirBuffered(fich2);
-            leerBuffered(fich2);
+            escribirPrintWriter(fich1);
+            leerScanner(fich1);
+            //escribirBuffered(fich2);
+            //leerBuffered(fich2);
             //escribirStream(fich3);
             //leerStream(fich3);
         } catch (IOException e){
