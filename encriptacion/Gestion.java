@@ -45,15 +45,24 @@ public class Gestion {
     }
 
     public static void encriptarDesencriptar(int opcion) {
-        SistemaEncriptado se = new SistemaEncriptado(sc, 1);
+        SistemaEncriptado se = new SistemaEncriptado(sc, 2);
         File fich = SistemaEncriptado.pedirFichero();
-
-
         if (opcion == 1 && fich != null) {
-            se.encriptar(fich);
+            boolean ext = SistemaEncriptado.comprobarExtension(fich);
+            if (ext) {
+                se.encriptar(fich);
+            } else {
+                System.out.println("ERROR: Extensión no valida");
+            }
+            System.out.println("\nSe ha encriptado correctamente\n");
         } else if (fich != null) {
             boolean ext = SistemaEncriptado.comprobarExtension(fich);
-
+            if (ext) {
+                se.desencriptar(fich);
+            } else {
+                System.out.println("ERROR: Extensión no valida");
+            }
+            System.out.println("\nSe ha desencriptado correctamente\n");
         } else {
             System.out.println("El fichero introducido no existe");
         }

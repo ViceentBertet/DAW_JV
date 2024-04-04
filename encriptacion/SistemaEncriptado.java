@@ -2,8 +2,10 @@ package encriptacion;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.plugins.convert.Base64Converter;
 
 import java.io.*;
+import java.util.Base64;
 import java.util.Scanner;
 
 public class SistemaEncriptado implements IEncriptar{
@@ -21,8 +23,15 @@ public class SistemaEncriptado implements IEncriptar{
     }
     public static boolean comprobarExtension(File f){
         String nom = f.getName();
-        String ext = nom.substring(nom.length() - 4);
-        if (CIFRADO.equals(ext)) {
+        String ext = "ERROR";
+        for (int i = 0; i < nom.length(); i++) {
+            if (nom.charAt(i) == '.') {
+                ext = nom.substring(i + 1);
+                break;
+            }
+        }
+
+        if (CIFRADO.equals(ext) || NOCIFRADO.equals(ext)) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -88,6 +97,25 @@ public class SistemaEncriptado implements IEncriptar{
             System.out.println("ERROR: No se ha podido crear el fichero encriptado");
         }
     }
+    public static void encriptarPorBase(File fich) {
+        String linea = "";
+        String cadenaCodificada = "";
+        try {
+            BufferedReader encR = new BufferedReader(new FileReader(fich));
+            BufferedWriter encW = new BufferedWriter(new FileWriter(cambiarExtension(fich)));
+
+            while ((linea = encR.readLine()) != null) {
+                cadenaCodificada = Base64.getEncoder().encodeToString(linea.getBytes());
+
+                encW.write(cadenaCodificada + "\n");
+            }
+
+            encR.close();
+            encW.close();
+        } catch (IOException e) {
+            LOGGER.error(e.getStackTrace());
+        }
+    }
     public static void desencriptarPorValor(File fich) {
         String palabra = pedirPalabra();
         int valor = crearValor(palabra);
@@ -108,6 +136,25 @@ public class SistemaEncriptado implements IEncriptar{
             System.out.println("ERROR: No se ha podido leer el fichero encriptado");
         }
     }
+    public static void desencriptarPorBase(File fich) {
+        String linea = "";
+        try {
+            BufferedReader encR = new BufferedReader(new FileReader(fich));
+            BufferedWriter encW = new BufferedWriter(new FileWriter(cambiarExtension(fich)));
+
+            while ((linea = encR.readLine()) != null) {
+                byte[] bytesDecodificados = Base64.getDecoder().decode(linea);
+                String cadenaDecodificada = new String(bytesDecodificados);
+
+                encW.write(cadenaDecodificada + "\n");
+            }
+
+            encR.close();
+            encW.close();
+        } catch (IOException e) {
+            LOGGER.error(e.getStackTrace());
+        }
+    }
     @Override
     public void encriptar(File fich) {
         switch (this.type) {
@@ -115,6 +162,7 @@ public class SistemaEncriptado implements IEncriptar{
                 encriptarPorValor(fich);
                 break;
             case 2:
+                encriptarPorBase(fich);
                 break;
 
             case 3:
@@ -129,6 +177,7 @@ public class SistemaEncriptado implements IEncriptar{
                     desencriptarPorValor(fich);
                     break;
                 case 2:
+                    desencriptarPorBase(fich);
                     break;
 
                 case 3:
