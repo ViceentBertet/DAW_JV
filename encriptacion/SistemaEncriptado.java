@@ -4,7 +4,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.plugins.convert.Base64Converter;
 
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Scanner;
 
@@ -12,6 +17,8 @@ public class SistemaEncriptado implements IEncriptar{
     private static Logger LOGGER = LogManager.getRootLogger();
     private static final String CIFRADO = "crip";
     private static final String NOCIFRADO = "txt";
+    private static final String ALGORITMO = "AES";
+    private static final String TIPO_CIFRADO = "AES/CBC/PKCS5Padding";
     private static Scanner sc;
     private int type;
     public SistemaEncriptado(Scanner sc, int type) throws IllegalArgumentException{
@@ -116,6 +123,31 @@ public class SistemaEncriptado implements IEncriptar{
             LOGGER.error(e.getStackTrace());
         }
     }
+    public static void encriptarPorCipher(File fich) {
+        String linea = "";
+        String palabra = pedirPalabra();
+        String iv = "SECRETO";
+        String cadenaCodificada;
+        try {
+            BufferedReader encR = new BufferedReader(new FileReader(fich));
+            BufferedWriter encW = new BufferedWriter(new FileWriter(cambiarExtension(fich)));
+            Cipher cipher = Cipher.getInstance(TIPO_CIFRADO);
+            SecretKeySpec llave = new SecretKeySpec(palabra.getBytes(), ALGORITMO);
+            IvParameterSpec ivParam = new IvParameterSpec(iv.getBytes());
+            cipher.init(Cipher.ENCRYPT_MODE, llave, ivParam);
+
+            while ((linea = encR.readLine()) != null) {
+                byte[] encriptado = cipher.doFinal(linea.getBytes());
+                cadenaCodificada = Base64.getEncoder().encodeToString(encriptado);
+                encW.write(cadenaCodificada + "\n");
+            }
+
+            encR.close();
+            encW.close();
+        } catch (Exception e) {
+            LOGGER.error(e.getStackTrace());
+        }
+    }
     public static void desencriptarPorValor(File fich) {
         String palabra = pedirPalabra();
         int valor = crearValor(palabra);
@@ -155,6 +187,32 @@ public class SistemaEncriptado implements IEncriptar{
             LOGGER.error(e.getStackTrace());
         }
     }
+    public static void desencriptarPorCipher(File fich) {
+        String linea = "";
+        String palabra = pedirPalabra();
+        String iv = "SECRETO";
+
+        try {
+            BufferedReader encR = new BufferedReader(new FileReader(fich));
+            BufferedWriter encW = new BufferedWriter(new FileWriter(cambiarExtension(fich)));
+            Cipher cipher = Cipher.getInstance(TIPO_CIFRADO);
+            SecretKeySpec llave = new SecretKeySpec(palabra.getBytes(), ALGORITMO);
+            IvParameterSpec ivParam = new IvParameterSpec(iv.getBytes());
+            cipher.init(Cipher.ENCRYPT_MODE, llave, ivParam);
+
+            while ((linea = encR.readLine()) != null) {
+                byte[] decode = Base64.getDecoder().decode(linea.getBytes());
+                byte[] desencriptado = cipher.doFinal(decode);
+
+                encW.write(new String(desencriptado) + "\n");
+            }
+
+            encR.close();
+            encW.close();
+        } catch (Exception e) {
+            LOGGER.error(e.getStackTrace());
+        }
+    }
     @Override
     public void encriptar(File fich) {
         switch (this.type) {
@@ -166,6 +224,7 @@ public class SistemaEncriptado implements IEncriptar{
                 break;
 
             case 3:
+                encriptarPorCipher(fich);
                 break;
         }
     }
@@ -181,6 +240,7 @@ public class SistemaEncriptado implements IEncriptar{
                     break;
 
                 case 3:
+                    desencriptarPorCipher(fich);
                     break;
             }
         } else {

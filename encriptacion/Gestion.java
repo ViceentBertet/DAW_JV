@@ -45,7 +45,7 @@ public class Gestion {
     }
 
     public static void encriptarDesencriptar(int opcion) {
-        SistemaEncriptado se = new SistemaEncriptado(sc, 2);
+        SistemaEncriptado se = new SistemaEncriptado(sc, 3);
         File fich = SistemaEncriptado.pedirFichero();
         if (opcion == 1 && fich != null) {
             boolean ext = SistemaEncriptado.comprobarExtension(fich);
