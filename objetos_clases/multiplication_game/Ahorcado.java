@@ -1,55 +1,104 @@
 package objetos_clases.multiplication_game;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Ahorcado {
+    private static Logger LOGGER = LogManager.getRootLogger();
     private Scanner sc = new Scanner(System.in);
-    private final Incognita[] incognitas = new Incognita[6];
+    private final Incognita[] incognitas = new Incognita[7];
     private Incognita adivinar;
     private StringBuilder palabra = new StringBuilder();
-
     public Ahorcado() {
-        Incognita[] peliculas = new Incognita[5];
-        Incognita[] libros = new Incognita[5];
-        Incognita[] grupos = new Incognita[5];
+        Pelicula[] peliculas = cargarPeliculas();
+        Libro[] libros = cargarLibros();
+        Grupo[] grupos = cargarGrupos();
         int n;
 
-        peliculas[0] = new Incognita("Pelicula", "AVENGERS");
-        peliculas[1] = new Incognita("Pelicula", "ORIGEN");
-        peliculas[2] = new Incognita("Pelicula", "HER");
-        peliculas[3] = new Incognita("Pelicula", "TITANIC");
-        peliculas[4] = new Incognita("Pelicula", "CARS");
-
-        libros[0] = new Incognita("Libro", "EL PRINCIPITO");
-        libros[1] = new Incognita("Libro", "HAMLET");
-        libros[2] = new Incognita("Libro", "EL QUIJOTE");
-        libros[3] = new Incognita("Libro", "HARRY POTTER");
-        libros[4] = new Incognita("Libro", "PETER PAN");
-
-        grupos[0] = new Incognita("Grupo Musical", "ACDC");
-        grupos[1] = new Incognita("Grupo Musical", "ONE DIRECTION");
-        grupos[2] = new Incognita("Grupo Musical", "LOS BEATLES");
-        grupos[3] = new Incognita("Grupo Musical", "LOS JACKSON");
-        grupos[4] = new Incognita("Grupo Musical", "BLACK EYED PEAS");
-
         Random rnd = new Random();
+        if (peliculas != null && libros != null && grupos != null) {
+            for (int i = 0; i < incognitas.length; i++) {
+                n = rnd.nextInt(3);
+                if (n == 0) {
+                    n = rnd.nextInt(10);
+                    incognitas[i] = peliculas[n];
 
-        for (int i = 0; i < incognitas.length; i++) {
-            n = rnd.nextInt(3);
-            if (n == 0) {
-                n = rnd.nextInt(5);
-                incognitas[i] = peliculas[n];
+                } else if (n == 1) {
+                    n = rnd.nextInt(10);
+                    incognitas[i] = libros[n];
 
-            } else if (n == 1) {
-                n = rnd.nextInt(5);
-                incognitas[i] = libros[n];
-
-            } else {
-                n = rnd.nextInt(5);
-                incognitas[i] = grupos[n];
+                } else {
+                    n = rnd.nextInt(10);
+                    incognitas[i] = grupos[n];
+                }
             }
+        } else {
+            System.out.println("ERROR: No se han podido cargar los datos");
         }
+    }
+    public static Pelicula[] cargarPeliculas(){
+        File fich = new File("Peliculas.txt");
+        String linea;
+        int i = 0;
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fich));
+            Pelicula[] pelis = new Pelicula[10];
+            while ((linea = br.readLine()) != null) {
+                pelis[i] = new Pelicula(linea);
+                i++;
+            }
+            br.close();
+            return pelis;
+        } catch (IOException e) {
+            LOGGER.error(e.getStackTrace());
+        }
+        return null;
+    }
+    public static Libro[] cargarLibros(){
+        File fich = new File("Libros.txt");
+        String linea;
+        int i = 0;
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fich));
+            Libro[] libros = new Libro[10];
+            while ((linea = br.readLine()) != null) {
+                libros[i] = new Libro(linea);
+                i++;
+            }
+            br.close();
+            return libros;
+        } catch (IOException e) {
+            LOGGER.error(e.getStackTrace());
+        }
+        return null;
+    }
+    public static Grupo[] cargarGrupos(){
+        File fich = new File("Grupos.txt");
+        String linea;
+        int i = 0;
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fich));
+            Grupo[] grupos = new Grupo[10];
+            while ((linea = br.readLine()) != null) {
+                grupos[i] = new Grupo(linea);
+                i++;
+            }
+            br.close();
+            return grupos;
+        } catch (IOException e) {
+            LOGGER.error(e.getStackTrace());
+        }
+        return null;
     }
     public void setAdivinar(Incognita adivinar) {
         this.adivinar = adivinar;
@@ -101,37 +150,6 @@ public class Ahorcado {
             }
         } else {
             System.out.println("El dato introducido debe ser una letra. Has perdido el turno");
-        }
-    }
-    public void resolver() {
-        String letra;
-        String respuesta;
-
-        for (int i = 1; i <= 3; i++) {
-            System.out.println("\nJUGADOR " + i);
-
-            System.out.print("¿Quieres resolver? (s/n) ");
-            respuesta = sc.nextLine().toLowerCase();
-
-
-            if (respuesta.equals("n")) {
-                System.out.print("Introduce tu respuesta: ");
-                letra = sc.nextLine().toUpperCase();
-                intento(letra);
-
-            } else if (respuesta.equals("s")) {
-                System.out.print("Introduce tu respuesta: ");
-                respuesta = sc.nextLine().toUpperCase();
-
-                if (getAdivinar().getTexto().equals(respuesta)) {
-                    getPalabra().delete(0, getPalabra().toString().length());
-                    getPalabra().append(getAdivinar().getTexto());
-                    System.out.printf("¡El jugador %d ha ganado!\n", i);
-                    break;
-                }
-            } else {
-                System.out.println("El dato introducido debe ser s o n. Has perdido el turno");
-            }
         }
     }
 }

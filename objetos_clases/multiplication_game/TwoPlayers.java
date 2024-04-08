@@ -40,6 +40,37 @@ public class TwoPlayers implements IMultiplication, IAhorcado {
         System.out.println("¡El jugador numero " + perdedor + " ha  fallado!");
         sc.close();
     }
+    public void resolver() {
+        String letra;
+        String respuesta;
+
+        for (int i = 1; i <= 2; i++) {
+            System.out.println("\nJUGADOR " + i);
+
+            System.out.print("¿Quieres resolver? (s/n) ");
+            respuesta = sc.nextLine().toLowerCase();
+
+
+            if (respuesta.equals("n")) {
+                System.out.print("Introduce tu respuesta: ");
+                letra = sc.nextLine().toUpperCase();
+                aho.intento(letra);
+
+            } else if (respuesta.equals("s")) {
+                System.out.print("Introduce tu respuesta: ");
+                respuesta = sc.nextLine().toUpperCase();
+
+                if (aho.getAdivinar().getTexto().equals(respuesta)) {
+                    aho.getPalabra().delete(0, aho.getPalabra().toString().length());
+                    aho.getPalabra().append(aho.getAdivinar().getTexto());
+                    System.out.printf("¡El jugador %d ha ganado!\n", i);
+                    break;
+                }
+            } else {
+                System.out.println("El dato introducido debe ser s o n. Has perdido el turno");
+            }
+        }
+    }
     @Override
     public void jugarAhorcado() {
         Random rnd = new Random();
@@ -53,7 +84,7 @@ public class TwoPlayers implements IMultiplication, IAhorcado {
             if (i == 12 / 2){
                 System.out.println("El tema es " + aho.getAdivinar().getTipo());
             }
-            aho.resolver();
+            resolver();
             if (aho.getAdivinar().getTexto().equals(aho.getPalabra().toString())) {
                 break;
             }

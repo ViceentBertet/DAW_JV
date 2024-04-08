@@ -3,18 +3,20 @@ package objetos_clases.multiplication_game;
 import java.util.Objects;
 
 public class Incognita {
-    private String tipo;
     private String texto;
     //CONSTRUCTORES
-    public Incognita() {
-    }
-    public Incognita(String tipo, String texto) {
-        this.tipo = tipo;
+    public Incognita(String texto) {
         this.texto = texto;
     }
-
-    //GETTERS & SETTERS
     public String getTipo() {
+        String clase = getClass().toString();
+        String tipo = "Incognita";
+        for (int i = clase.length() - 1; i > 0; i--) {
+            if(clase.charAt(i) == '.') {
+                tipo = clase.substring(i + 1);
+                break;
+            }
+        }
         return tipo;
     }
     public String getTexto() {
@@ -43,7 +45,7 @@ public class Incognita {
     @Override
     public String toString() {
         return "Incognita{" +
-                "tipo='" + tipo  +
+                "tipo='" + this.getClass()  +
                 ", texto='" + texto  +
                 '}';
     }
